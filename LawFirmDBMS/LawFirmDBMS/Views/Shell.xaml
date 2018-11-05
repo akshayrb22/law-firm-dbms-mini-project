@@ -26,7 +26,27 @@
                                Text="Home" />
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
-        </Controls:HamburgerMenu.PrimaryButtons>
+			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:LawyerViewPage">
+				<StackPanel Orientation="Horizontal">
+					<SymbolIcon Width="48"
+								Height="48"
+								Symbol="People"/>
+					<TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="View Lawyer Details" />
+				</StackPanel>
+			</Controls:HamburgerButtonInfo>
+			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:LawyerEntryPage">
+				<StackPanel Orientation="Horizontal">
+					<SymbolIcon Width="48"
+								Height="48"
+								Symbol="Edit"/>
+					<TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Enter Lawyer Details" />
+				</StackPanel>
+			</Controls:HamburgerButtonInfo>
+		</Controls:HamburgerMenu.PrimaryButtons>
 
         <Controls:HamburgerMenu.SecondaryButtons>
             <!--  profile button  -->

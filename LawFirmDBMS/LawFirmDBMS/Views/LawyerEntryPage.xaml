@@ -5,10 +5,75 @@
     xmlns:local="using:LawFirmDBMS.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+	xmlns:controls="using:Template10.Controls"
+	xmlns:vm="using:LawFirmDBMS.ViewModels"
+	xmlns:Behaviors="using:Template10.Behaviors"
+	xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+	xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+	mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Page.DataContext>
+		<vm:MainPageViewModel x:Name="ViewModel" />
+	</Page.DataContext>
+	<RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True" Text="Lawyer Entry Page">
 
-    <Grid>
 
-    </Grid>
+			<!--  secondary commands  -->
+			<controls:PageHeader.SecondaryCommands>
+				<AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
+				<AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
+				<AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
+			</controls:PageHeader.SecondaryCommands>
+
+		</controls:PageHeader>
+		<TextBox 
+		x:Name="firstName" 
+		TextWrapping="Wrap" 
+		Text="" 
+		Margin="35,82,-166.5,-87"
+		Header="First Name" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="155">
+			<Interactivity:Interaction.Behaviors>
+				<!--  focus on textbox when page loads  -->
+				<Core:EventTriggerBehavior>
+					<Behaviors:FocusAction />
+				</Core:EventTriggerBehavior>
+			</Interactivity:Interaction.Behaviors>
+		</TextBox>
+		<Button x:Name="submitButton"
+                Click="{x:Bind ViewModel.GotoDetailsPage}" Content="Submit"
+                RelativePanel.AlignBottomWith="firstName" Margin="690,87,-690,-87"/>
+		<TextBox 
+	  x:Name="lastName" 
+	  TextWrapping="Wrap" 
+	  Text="" 
+	  Margin="265,82,-152,-87"
+	  Header="Last Name" HorizontalAlignment="Left" Width="155">
+			<Interactivity:Interaction.Behaviors>
+				<!--  focus on textbox when page loads  -->
+				<Core:EventTriggerBehavior>
+					<Behaviors:FocusAction />
+				</Core:EventTriggerBehavior>
+			</Interactivity:Interaction.Behaviors>
+		</TextBox>
+		<ComboBox x:Name="designation" 
+				  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="35,203,-212,-203"
+				  Header="Designation" PlaceholderText="Select designation">
+			<x:String>Name Partner</x:String>
+			<x:String>Senior Partner</x:String>
+			<x:String>Junior Partner</x:String>
+			<x:String>Associate Partner</x:String>
+			<x:String>Paralegal</x:String>
+		</ComboBox>
+		<TextBox x:Name="phoneNumber" TextWrapping="NoWrap" Text=""
+				 Header="Phone Number" Height="60" VerticalAlignment="Bottom" 
+				 HorizontalAlignment="Right" Width="200" Margin="0,0,-465,-263"
+				 InputScope="TelephoneNumber"/>
+
+
+
+
+	</RelativePanel>
 </Page>

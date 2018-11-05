@@ -26,5 +26,8 @@ namespace LawFirmDBMS.Views
         {
             this.InitializeComponent();
         }
-    }
+		//TODO: Add verification for telephone numbers.
+		//TODO: Add upload profile picture.
+		//TODO: Save the values stored.
+	}
 }

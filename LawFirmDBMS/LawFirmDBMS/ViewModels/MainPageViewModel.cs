@@ -57,5 +57,8 @@ namespace LawFirmDBMS.ViewModels
 		public void GotoAbout() =>
 			NavigationService.Navigate(typeof(Views.SettingsPage), 2);
 
+		public void GotoLawyerViewPage() =>
+			NavigationService.Navigate(typeof(Views.LawyerViewPage));
+
 	}
 }
