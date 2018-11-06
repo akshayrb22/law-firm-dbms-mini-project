@@ -13,12 +13,12 @@
 	mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Page.DataContext>
-		<vm:MainPageViewModel x:Name="ViewModel" />
+		<vm:LawyerSignupPageViewModel x:Name="ViewModel" />
 	</Page.DataContext>
 	<RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="Lawyer Entry Page">
+                             RelativePanel.AlignTopWithPanel="True" Text="Lawyer Sign Up Page">
 
 
 			<!--  secondary commands  -->
@@ -33,8 +33,8 @@
 		x:Name="firstName" 
 		TextWrapping="Wrap" 
 		Text="" 
-		Margin="35,82,-166.5,-87"
-		Header="First Name" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="155">
+		Margin="35,82,-211.5,-87"
+		Header="First Name" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">
 			<Interactivity:Interaction.Behaviors>
 				<!--  focus on textbox when page loads  -->
 				<Core:EventTriggerBehavior>
@@ -42,25 +42,17 @@
 				</Core:EventTriggerBehavior>
 			</Interactivity:Interaction.Behaviors>
 		</TextBox>
-		<Button x:Name="submitButton"
-                Click="{x:Bind ViewModel.GotoDetailsPage}" Content="Submit"
-                RelativePanel.AlignBottomWith="firstName" Margin="690,87,-690,-87"/>
+		
 		<TextBox 
 	  x:Name="lastName" 
 	  TextWrapping="Wrap" 
 	  Text="" 
-	  Margin="265,82,-152,-87"
-	  Header="Last Name" HorizontalAlignment="Left" Width="155">
-			<Interactivity:Interaction.Behaviors>
-				<!--  focus on textbox when page loads  -->
-				<Core:EventTriggerBehavior>
-					<Behaviors:FocusAction />
-				</Core:EventTriggerBehavior>
-			</Interactivity:Interaction.Behaviors>
+	  Margin="350,82,-282,-87"
+	  Header="Last Name" HorizontalAlignment="Left" Width="200">
 		</TextBox>
 		<ComboBox x:Name="designation" 
-				  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="35,203,-212,-203"
-				  Header="Designation" PlaceholderText="Select designation">
+				  HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="35,220,-235,-280"
+				  Header="Designation" PlaceholderText="Select designation" Height="60">
 			<x:String>Name Partner</x:String>
 			<x:String>Senior Partner</x:String>
 			<x:String>Junior Partner</x:String>
@@ -68,10 +60,27 @@
 			<x:String>Paralegal</x:String>
 		</ComboBox>
 		<TextBox x:Name="phoneNumber" TextWrapping="NoWrap" Text=""
-				 Header="Phone Number" Height="60" VerticalAlignment="Bottom" 
-				 HorizontalAlignment="Right" Width="200" Margin="0,0,-465,-263"
+				 Header="Phone Number" 
+				 HorizontalAlignment="Right" Width="200" Margin="0,220,-550,-280"
 				 InputScope="TelephoneNumber"/>
+		<TextBox 
+	  x:Name="lawyerID" 
+	  TextWrapping="Wrap" 
+	  Text="" 
+	  Margin="35,360,0,-365"
+	  Header="Lawyer ID" HorizontalAlignment="Left" Width="200">
+		</TextBox>
+		<TextBox 
+	  x:Name="password" 
+	  TextWrapping="Wrap" 
+	  Text="" 
+	  Margin="350,360,-315,-365"
+	  Header="Password" HorizontalAlignment="Left" Width="200"/>
 
+		<Button x:Name="submitButton"
+                Click="{x:Bind ViewModel.GetLawyer}" Content="Submit"
+                RelativePanel.AlignBottomWith="firstName" Margin="663,362,-692,-365" 
+				VerticalAlignment="Top" Width="96" Height="35"/>
 
 
 

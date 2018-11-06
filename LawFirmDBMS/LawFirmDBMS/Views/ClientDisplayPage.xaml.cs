@@ -17,17 +17,14 @@ using Windows.UI.Xaml.Navigation;
 
 namespace LawFirmDBMS.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class LawyerEntryPage : Page
-    {
-        public LawyerEntryPage()
-        {
-            this.InitializeComponent();
-        }
-		//TODO: Add verification for telephone numbers.
-		//TODO: Add upload profile picture.
-		//TODO: Save the values stored.
+	/// <summary>
+	/// An empty page that can be used on its own or navigated to within a Frame.
+	/// </summary>
+	public sealed partial class ClientDisplayPage : Page
+	{
+		public ClientDisplayPage()
+		{
+			this.InitializeComponent();
+		}
 	}
 }

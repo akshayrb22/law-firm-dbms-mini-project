@@ -97,26 +97,38 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SettingsServices\SettingsService.cs" />
+    <Compile Include="ViewModels\CaseDisplayPageViewModel.cs" />
+    <Compile Include="ViewModels\CaseUpdatePageViewModel.cs" />
+    <Compile Include="ViewModels\ClientDisplayPageViewModel.cs" />
+    <Compile Include="ViewModels\ClientEntryPageViewModel.cs" />
+    <Compile Include="ViewModels\LawyerDisplayPageViewModel.cs" />
+    <Compile Include="ViewModels\LawyerSignupPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\DetailPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="Views\Busy.xaml.cs">
       <DependentUpon>Busy.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CaseViewUpdatePage.xaml.cs">
-      <DependentUpon>CaseViewUpdatePage.xaml</DependentUpon>
+    <Compile Include="Views\CaseUpdatePage.xaml.cs">
+      <DependentUpon>CaseUpdatePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ClientViewPage.xaml.cs">
-      <DependentUpon>ClientViewPage.xaml</DependentUpon>
+    <Compile Include="Views\CaseDisplayPage.xaml.cs">
+      <DependentUpon>CaseDisplayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClientDisplayPage.xaml.cs">
+      <DependentUpon>ClientDisplayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClientEntryPage.xaml.cs">
+      <DependentUpon>ClientEntryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LawyerEntryPage.xaml.cs">
-      <DependentUpon>LawyerEntryPage.xaml</DependentUpon>
+    <Compile Include="Views\LawyerSignupPage.xaml.cs">
+      <DependentUpon>LawyerSignupPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LawyerViewPage.xaml.cs">
-      <DependentUpon>LawyerViewPage.xaml</DependentUpon>
+    <Compile Include="Views\LawyerDisplayPage.xaml.cs">
+      <DependentUpon>LawyerDisplayPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -162,11 +174,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\CaseViewUpdatePage.xaml">
+    <Page Include="Views\CaseUpdatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CaseDisplayPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ClientViewPage.xaml">
+    <Page Include="Views\ClientDisplayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClientEntryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -174,11 +194,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LawyerEntryPage.xaml">
+    <Page Include="Views\LawyerSignupPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\LawyerViewPage.xaml">
+    <Page Include="Views\LawyerDisplayPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
