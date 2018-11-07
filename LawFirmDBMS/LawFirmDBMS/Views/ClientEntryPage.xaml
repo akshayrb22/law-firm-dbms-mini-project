@@ -5,10 +5,52 @@
     xmlns:local="using:LawFirmDBMS.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+	xmlns:controls="using:Template10.Controls"
+	xmlns:vm="using:LawFirmDBMS.ViewModels"
+	mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+	<Page.DataContext>
+		<vm:ClientEntryPageViewModel x:Name="ViewModel" />
+	</Page.DataContext>
 
-    </Grid>
+	<RelativePanel>
+		<controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True" Text="Enter Client Details">
+
+
+			<!--  secondary commands  -->
+			<controls:PageHeader.SecondaryCommands>
+				<AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
+				<AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
+				<AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
+			</controls:PageHeader.SecondaryCommands>
+
+		</controls:PageHeader>
+		<TextBox Height="60" Margin="80,100,-280,-121" 
+				 HorizontalAlignment="Left" 
+				 Width="200" 
+				 VerticalAlignment="Top"
+				 Name="clientName"
+				 Header="Client Name*">
+
+		</TextBox>
+
+		<TextBox Height="60" Margin="80,260,-120,-281" 
+				 HorizontalAlignment="Left" 
+				 Width="200" 
+				 VerticalAlignment="Top"
+				 Name="clientID"
+				 Header="Client ID*">
+
+		</TextBox>
+		<TextBox Height="60" Margin="80,420,-280,-441" 
+	  HorizontalAlignment="Left" 
+	  Width="200" 
+	  VerticalAlignment="Top"
+	  x:Name="clientPhone"
+	  Header="Phone*"/>
+		<Button x:Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="570,448,-241,-153" VerticalAlignment="Stretch" Width="120" Click="Submit_Click"/>
+	</RelativePanel>
 </Page>

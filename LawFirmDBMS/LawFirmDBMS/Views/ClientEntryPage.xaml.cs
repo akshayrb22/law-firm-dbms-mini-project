@@ -26,5 +26,24 @@ namespace LawFirmDBMS.Views
         {
             this.InitializeComponent();
         }
-    }
+		Client client = new Client();
+
+		private void Submit_Click(object sender, RoutedEventArgs e)
+		{
+			client.ClientID = Convert.ToInt32(clientID.Text);
+			client.FullName = clientName.Text;
+			client.Phone = clientPhone.Text;
+		}
+		// TODO: Add check for phone number validation
+		// TODO: Add an upload picture bitton to take in a picture of the client 
+	}
+	public class Client
+	{
+		public int ClientID { get; set; }
+
+		public string FullName { get; set; }
+
+		public string Phone { get; set; }
+
+	}
 }

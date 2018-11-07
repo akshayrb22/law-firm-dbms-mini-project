@@ -28,14 +28,19 @@ namespace LawFirmDBMS.Views
         }
 		//TODO: Add verification for telephone numbers.
 		//TODO: Add upload profile picture.
-		//TODO: Save the values stored.
-
 		Lawyer lawyer = new Lawyer();
 
-		public async Lawyer GetLawyer(object sender, RoutedEventArgs e)
+		private void submitButton_Click(object sender, RoutedEventArgs e)
 		{
-			lawyer.LawyerID = 
-		}
+			lawyer.LawyerID = Convert.ToInt32(lawyerID.Text);
+			lawyer.Password = password.Password;
+			lawyer.FirstName = firstName.Text;
+			lawyer.LastName = lastName.Text;
+			lawyer.Phone = phoneNumber.ToString();
+			lawyer.Designation = designation.SelectedItem.ToString();
+
+			//TODO: Define a method to send this lawyer object to the database.
+
 	}
 
 	public class Lawyer

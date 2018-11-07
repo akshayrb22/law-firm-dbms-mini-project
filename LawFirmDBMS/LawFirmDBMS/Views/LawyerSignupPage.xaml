@@ -34,7 +34,7 @@
 		TextWrapping="Wrap" 
 		Text="" 
 		Margin="35,82,-211.5,-87"
-		Header="First Name" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">
+		Header="First Name*" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">
 			<Interactivity:Interaction.Behaviors>
 				<!--  focus on textbox when page loads  -->
 				<Core:EventTriggerBehavior>
@@ -48,11 +48,11 @@
 	  TextWrapping="Wrap" 
 	  Text="" 
 	  Margin="350,82,-282,-87"
-	  Header="Last Name" HorizontalAlignment="Left" Width="200">
+	  Header="Last Name*" HorizontalAlignment="Left" Width="200">
 		</TextBox>
 		<ComboBox x:Name="designation" 
 				  HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="35,220,-235,-280"
-				  Header="Designation" PlaceholderText="Select designation" Height="60">
+				  Header="Designation*" PlaceholderText="Select designation" Height="60">
 			<x:String>Name Partner</x:String>
 			<x:String>Senior Partner</x:String>
 			<x:String>Junior Partner</x:String>
@@ -60,7 +60,7 @@
 			<x:String>Paralegal</x:String>
 		</ComboBox>
 		<TextBox x:Name="phoneNumber" TextWrapping="NoWrap" Text=""
-				 Header="Phone Number" 
+				 Header="Phone Number*" 
 				 HorizontalAlignment="Right" Width="200" Margin="0,220,-550,-280"
 				 InputScope="TelephoneNumber"/>
 		<TextBox 
@@ -68,17 +68,15 @@
 	  TextWrapping="Wrap" 
 	  Text="" 
 	  Margin="35,360,0,-365"
-	  Header="Lawyer ID" HorizontalAlignment="Left" Width="200">
+	  Header="Lawyer ID*" HorizontalAlignment="Left" Width="200">
 		</TextBox>
-		<TextBox 
-	  x:Name="password" 
-	  TextWrapping="Wrap" 
-	  Text="" 
+		<PasswordBox
+	  x:Name="password"  
 	  Margin="350,360,-315,-365"
-	  Header="Password" HorizontalAlignment="Left" Width="200"/>
+	  Header="Password*" HorizontalAlignment="Left" Width="200"/>
 
 		<Button x:Name="submitButton"
-                Click="{x:Bind ViewModel.GetLawyer}" Content="Submit"
+                Content="Submit"
                 RelativePanel.AlignBottomWith="firstName" Margin="663,362,-692,-365" 
 				VerticalAlignment="Top" Width="96" Height="35"/>
 
