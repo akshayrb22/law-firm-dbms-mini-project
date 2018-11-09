@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SettingsServices\SettingsService.cs" />
     <Compile Include="ViewModels\CaseDisplayPageViewModel.cs" />
@@ -153,6 +154,13 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SQLiteQueries\AlterLawyer.sql" />
+    <Content Include="SQLiteQueries\CaseRecord.sql" />
+    <Content Include="SQLiteQueries\Cases.sql" />
+    <Content Include="SQLiteQueries\Client.sql" />
+    <Content Include="SQLiteQueries\Counsels.sql" />
+    <Content Include="SQLiteQueries\Handles.sql" />
+    <Content Include="SQLiteQueries\Paralegal.sql" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
