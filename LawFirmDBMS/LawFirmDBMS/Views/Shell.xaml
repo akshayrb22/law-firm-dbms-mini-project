@@ -46,6 +46,17 @@
                                Text="Enter Lawyer Details" />
 				</StackPanel>
 			</Controls:HamburgerButtonInfo>
+
+			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:ClientEntryPage" PageParameter="4">
+				<StackPanel Orientation="Horizontal">
+					<SymbolIcon Width="48"
+								Height="48"
+								Symbol="Add"/>
+					<TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Enter Client Details" />
+				</StackPanel>
+			</Controls:HamburgerButtonInfo>
 		</Controls:HamburgerMenu.PrimaryButtons>
 
         <Controls:HamburgerMenu.SecondaryButtons>

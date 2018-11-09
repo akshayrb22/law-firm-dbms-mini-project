@@ -10,7 +10,7 @@ namespace LawFirmDBMS.ViewModels
 	class ClientEntryPageViewModel : ViewModelBase
 	{
 		public void GotoDetailsPage() =>
-			NavigationService.Navigate(typeof(Views.DetailPage), Value);
+			NavigationService.Navigate(typeof(Views.DetailPage), 1);
 
 		public void GotoSettings() =>
 			NavigationService.Navigate(typeof(Views.SettingsPage), 0);

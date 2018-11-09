@@ -17,15 +17,15 @@ using Windows.UI.Xaml.Navigation;
 
 namespace LawFirmDBMS.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class LawyerEntryPage : Page
-    {
-        public LawyerEntryPage()
-        {
-            this.InitializeComponent();
-        }
+	/// <summary>
+	/// An empty page that can be used on its own or navigated to within a Frame.
+	/// </summary>
+	public sealed partial class LawyerEntryPage : Page
+	{
+		public LawyerEntryPage()
+		{
+			this.InitializeComponent();
+		}
 		//TODO: Add verification for telephone numbers.
 		//TODO: Add upload profile picture.
 		Lawyer lawyer = new Lawyer();
@@ -41,8 +41,8 @@ namespace LawFirmDBMS.Views
 
 			//TODO: Define a method to send this lawyer object to the database.
 
+		}
 	}
-
 	public class Lawyer
 	{
 		public int LawyerID { get; set; }
