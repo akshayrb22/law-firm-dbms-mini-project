@@ -26,5 +26,6 @@ namespace LawFirmDBMS.Views
 		{
 			this.InitializeComponent();
 		}
+
 	}
 }

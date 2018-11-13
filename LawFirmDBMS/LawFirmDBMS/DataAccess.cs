@@ -3,129 +3,140 @@
 // See the blog post here for help on using the generated code: http://erikej.blogspot.dk/2014/10/database-first-with-sqlite-in-universal.html
 using System.Data.SQLite;
 using System;
-// TODO: Fix all these squiggly lines.
+using LawFirmDBMS.Views;
+
 namespace LawFirmDBMS
 {
-	public class SQLiteDb
+    public class SQLiteDb
     {
-        string _path;
+		
+		string _path;
         public SQLiteDb(string path)
         {
             _path = path;
         }
         
-         public void Create()
+         public void InsertIntoLawyer(Lawyer lawyer)
         {
-            using (SQLiteConnection db = new SQLiteConnection(_path))
-            {
-                db.CreateTable<CASE_RECORD>();
-                db.CreateTable<CASES>();
-                db.CreateTable<CLIENT>();
-                db.CreateTable<COUNSELS>();
-                db.CreateTable<HANDLES>();
-                db.CreateTable<LAWYER>();
-                db.CreateTable<PARALEGAL>();
-            }
+			using (SQLiteConnection connection = new SQLiteConnection(_path))
+			{
+				string lawyerInsert = "INSERT INTO LAWYER(NAME, DESIGNATION, BILLABLES, PHONE, PASSWORD) VALUES(@name, @designation, @billables, @phone" +
+					", @password)";
+				SQLiteCommand insert = new SQLiteCommand(lawyerInsert, connection);
+				insert.Parameters.AddWithValue("@name", lawyer.FullName);
+				insert.Parameters.AddWithValue("@designation", lawyer.Designation);
+				insert.Parameters.AddWithValue("@billables", lawyer.Billables);
+				insert.Parameters.AddWithValue("@phone", lawyer.Phone);
+				insert.Parameters.AddWithValue("@password", lawyer.Password);
+
+				insert.ExecuteNonQuery();
+
+			}
         }
     }
-    public partial class CASE_RECORD
-    {
-        [NotNull]
-        public Int64 DOC_ID { get; set; }
+    //public partial class CASE_RECORD
+    //{
+    //    [NotNull]
+    //    public Int64 DOC_ID { get; set; }
         
-        [NotNull]
-        public Int64 CASE_ID { get; set; }
+    //    [NotNull]
+    //    public Int64 CASE_ID { get; set; }
         
-        [NotNull]
-        public Int64 P_ID { get; set; }
+    //    [NotNull]
+    //    public Int64 P_ID { get; set; }
         
-    }
+    //}
     
-    public partial class CASES
-    {
-        [PrimaryKey, AutoIncrement]
-        public Int64 CASE_ID { get; set; }
+    //public partial class CASES
+    //{
+    //    [PrimaryKey, AutoIncrement]
+    //    public Int64 CASE_ID { get; set; }
         
-        [NotNull]
-        public String STATUS  { get; set; }
+    //    [NotNull]
+    //    public String STATUS  { get; set; }
         
-        [NotNull]
-        public Int64 HOURS_BILLED { get; set; }
+    //    [NotNull]
+    //    public Int64 HOURS_BILLED { get; set; }
         
-        [NotNull]
-        public Int64 CL_ID { get; set; }
+    //    [NotNull]
+    //    public Int64 CL_ID { get; set; }
         
-        [NotNull]
-        public String STAGE { get; set; }
+    //    [NotNull]
+    //    public String STAGE { get; set; }
         
-        [NotNull]
-        public String COURTROOM_NO { get; set; }
+    //    [NotNull]
+    //    public String COURTROOM_NO { get; set; }
         
-    }
+    //    public String NAME { get; set; }
+        
+    //}
     
-    public partial class CLIENT
-    {
-        [PrimaryKey, AutoIncrement]
-        public Int64 CL_ID { get; set; }
+    //public partial class CLIENT
+    //{
+    //    [PrimaryKey, AutoIncrement]
+    //    public Int64 CL_ID { get; set; }
         
-        [NotNull]
-        public String NAME { get; set; }
+    //    [NotNull]
+    //    public String NAME { get; set; }
         
-        [NotNull]
-        public Int64 CASE_ID { get; set; }
+    //    [NotNull]
+    //    public Int64 CASE_ID { get; set; }
         
-        [NotNull]
-        public String PHONE { get; set; }
+    //    [NotNull]
+    //    public String PHONE { get; set; }
         
-    }
+    //}
     
-    public partial class COUNSELS
-    {
-        [NotNull]
-        public Int64 CL_ID { get; set; }
+    //public partial class COUNSELS
+    //{
+    //    [NotNull]
+    //    public Int64 CL_ID { get; set; }
         
-        [NotNull]
-        public Int64 L_ID { get; set; }
+    //    [NotNull]
+    //    public Int64 L_ID { get; set; }
         
-    }
+    //}
     
-    public partial class HANDLES
-    {
-        [NotNull]
-        public Int64 L_ID { get; set; }
+    //public partial class HANDLES
+    //{
+    //    [NotNull]
+    //    public Int64 L_ID { get; set; }
         
-        [NotNull]
-        public Int64 CASE_ID { get; set; }
+    //    [NotNull]
+    //    public Int64 CASE_ID { get; set; }
         
-    }
+    //}
     
-    public partial class LAWYER
-    {
-        [PrimaryKey, AutoIncrement]
-        public Int64 L_ID { get; set; }
+    //public partial class LAWYER
+    //{
+    //    [PrimaryKey, AutoIncrement]
+    //    public Int64 L_ID { get; set; }
         
-        [NotNull]
-        public String NAME { get; set; }
+    //    [NotNull]
+    //    public String NAME { get; set; }
         
-        [NotNull]
-        public String DESIGNATION { get; set; }
+    //    [NotNull]
+    //    public String DESIGNATION { get; set; }
         
-        [NotNull]
-        public Int64 BILLABLES { get; set; }
+    //    [NotNull]
+    //    public Int64 BILLABLES { get; set; }
         
-        [NotNull]
-        public String PHONE { get; set; }
+    //    [NotNull]
+    //    public String PHONE { get; set; }
         
-    }
+    //    [NotNull]
+    //    public String PASSWORD { get; set; }
+        
+    //}
     
-    public partial class PARALEGAL
-    {
-        [PrimaryKey, AutoIncrement]
-        public Int64 P_ID { get; set; }
+    //public partial class PARALEGALS
+    //{
+    //    [PrimaryKey, AutoIncrement]
+    //    public Int64 P_ID { get; set; }
         
-        [NotNull]
-        public String PHONE { get; set; }
+    //    [NotNull]
+    //    public String PHONE { get; set; }
         
-    }
+    //}
     
 }

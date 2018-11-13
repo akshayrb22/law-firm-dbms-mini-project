@@ -63,5 +63,8 @@ namespace LawFirmDBMS.ViewModels
 		public void GotoClientEntryPage() =>
 			NavigationService.Navigate(typeof(Views.ClientEntryPage), 4);
 
+		public void GotoCaseEntryPage() =>
+			NavigationService.Navigate(typeof(Views.CaseEntryPage), 5);
+
 	}
 }

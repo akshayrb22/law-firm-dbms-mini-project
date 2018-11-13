@@ -16,24 +16,14 @@
 
         <Controls:HamburgerMenu.PrimaryButtons>
             <!--  mainpage button  -->
-            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Width="48"
-                                Height="48"
-                                Symbol="Home" />
-                    <TextBlock Margin="12,0,0,0"
-                               VerticalAlignment="Center"
-                               Text="Home" />
-                </StackPanel>
-            </Controls:HamburgerButtonInfo>
-			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:LawyerViewPage">
+			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
 				<StackPanel Orientation="Horizontal">
 					<SymbolIcon Width="48"
-								Height="48"
-								Symbol="People"/>
+                                Height="48"
+                                Symbol="Home" />
 					<TextBlock Margin="12,0,0,0"
                                VerticalAlignment="Center"
-                               Text="View Lawyer Details" />
+                               Text="Home" />
 				</StackPanel>
 			</Controls:HamburgerButtonInfo>
 			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:LawyerEntryPage">
@@ -57,22 +47,24 @@
                                Text="Enter Client Details" />
 				</StackPanel>
 			</Controls:HamburgerButtonInfo>
+
+			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:CaseEntryPage" PageParameter="5">
+				<StackPanel Orientation="Horizontal">
+					<SymbolIcon Width="48"
+								Height="48"
+								Symbol="Bullets"/>
+					<TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Enter Client Details" />
+				</StackPanel>
+			</Controls:HamburgerButtonInfo>
 		</Controls:HamburgerMenu.PrimaryButtons>
 
         <Controls:HamburgerMenu.SecondaryButtons>
             <!--  profile button  -->
-            <Controls:HamburgerButtonInfo ButtonType="Command">
-                <Interactivity:Interaction.Behaviors>
-                    <Core:EventTriggerBehavior EventName="Tapped">
-                        <behaviors:MessageDialogAction Title="Show profile" Content="This is an example of a Command-type hamburger button. It does not navigate, only raises the Tapped event for some custom implementation." />
-                    </Core:EventTriggerBehavior>
-                </Interactivity:Interaction.Behaviors>
-                <StackPanel Orientation="Horizontal">
-                    <ToolTipService.ToolTip>
-                        <TextBlock MaxWidth="225"
-                                   Text="This is the tooltip for the Show Profile command button. Remember to localize."
-                                   TextWrapping="Wrap" />
-                    </ToolTipService.ToolTip>
+			<Controls:HamburgerButtonInfo ButtonType="Command" PageType="views:LawyerViewPage">
+				<StackPanel Orientation="Horizontal">
+  
                     <SymbolIcon Width="48"
                                 Height="48"
                                 Symbol="Contact" />

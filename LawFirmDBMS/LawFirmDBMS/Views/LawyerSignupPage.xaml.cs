@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Data.SQLite;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -12,7 +13,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace LawFirmDBMS.Views
@@ -25,12 +25,13 @@ namespace LawFirmDBMS.Views
 		public LawyerEntryPage()
 		{
 			this.InitializeComponent();
+			SQLiteDb db = new SQLiteDb("Foreign Keys=True;data source=G:\\lawfirmdbms\\LawFirmDBMS\\LawFirmDBMS\\LawFirmDBMS.db");
 		}
 		//TODO: Add verification for telephone numbers.
 		//TODO: Add upload profile picture.
 		Lawyer lawyer = new Lawyer();
-
-		private void submitButton_Click(object sender, RoutedEventArgs e)
+		SQLiteDb db = new SQLiteDb("Foreign Keys=True;data source=G:\\lawfirmdbms\\LawFirmDBMS\\LawFirmDBMS\\LawFirmDBMS.db");
+		private void SubmitButtonClick(object sender, RoutedEventArgs e)
 		{
 			lawyer.LawyerID = Convert.ToInt32(lawyerID.Text);
 			lawyer.Password = password.Password;
@@ -38,10 +39,17 @@ namespace LawFirmDBMS.Views
 			lawyer.LastName = lastName.Text;
 			lawyer.Phone = phoneNumber.ToString();
 			lawyer.Designation = designation.SelectedItem.ToString();
-
+			db.InsertIntoLawyer(lawyer);
 			//TODO: Define a method to send this lawyer object to the database.
 
 		}
+		//public void AddToDatabase(Lawyer lawyer)
+		//{
+		//	using (SQLiteConnection connection = new SQLiteConnection()
+		//	{
+
+		//	}
+		//}
 	}
 	public class Lawyer
 	{
@@ -56,5 +64,13 @@ namespace LawFirmDBMS.Views
 		public string Phone { get; set; }
 
 		public string Password { get; set; }
+
+		public string FullName {
+			get
+			{
+				return(FirstName + " " + LastName);
+			}
+		}
+		public int Billables { get; set; }
 	}
 }
