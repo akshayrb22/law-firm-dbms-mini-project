@@ -1,23 +1,23 @@
 ﻿<Page
-    x:Class="LawFirmDBMS.Views.CaseEntryPage"
+    x:Class="LawFirmDBMS.Views.LoginPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LawFirmDBMS.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:vm="using:LawFirmDBMS.ViewModels"
 	xmlns:controls="using:Template10.Controls"
+	xmlns:vm="using:LawFirmDBMS.ViewModels"
 	mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 	<Page.DataContext>
-		<vm:CaseEntryPageViewModel x:Name="ViewModel"/>
+		<vm:LoginPageViewModel x:Name="ViewModel" />
 	</Page.DataContext>
-
-	<RelativePanel>
+	<RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="Case Entry Page">
+                             RelativePanel.AlignTopWithPanel="True" Text="Login Page">
+
 
 			<!--  secondary commands  -->
 			<controls:PageHeader.SecondaryCommands>
@@ -25,11 +25,21 @@
 				<AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
 				<AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
 			</controls:PageHeader.SecondaryCommands>
+
 		</controls:PageHeader>
-		<TextBox x:Name="caseName" HorizontalAlignment="Left" 
-				 Text="" Width="265" Margin="79,126,0,-177" Header="Case Name"/>
-		<TextBox x:Name="courtroomNumber" Header="Courtroom Number" 
-				 Margin="568,126,0,-107" HorizontalAlignment="Left" 
-				 Width="182" VerticalAlignment="Stretch"/>
+		<TextBox x:Name="phone" HorizontalAlignment="Left" 
+				 Height="70" Text="" VerticalAlignment="Bottom" 
+				 Width="320" Margin="640,0,0,-400"
+				 Header="Phone Number"/>
+		<PasswordBox x:Name="password" HorizontalAlignment="Left" 
+				 Height="70" VerticalAlignment="Bottom" 
+				 Width="320" Margin="640,0,0,-640"
+				 Header="Password"/>
+		<Button x:Name="submitButton" Content="Submit" 
+				HorizontalAlignment="Left" Height="32" 
+				VerticalAlignment="Top" Width="160" 
+				Margin="720,770,0,0" Click="{x:Bind ViewModel.GotoLawyerViewPage}" />
+
+
 	</RelativePanel>
 </Page>

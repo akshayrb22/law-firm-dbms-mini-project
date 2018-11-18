@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +23,38 @@ namespace LawFirmDBMS.Views
     /// </summary>
     public sealed partial class LawyerViewPage : Page
     {
-        public LawyerViewPage()
+		public Lawyer lawyer { get; set; }
+		//Lawyer lawyer = new Lawyer();
+		//SqlDB db = new SqlDB();
+		public SqlDB db { get; set; }
+		public List<Lawyer> Lawyers { get; set; }
+		public LawyerViewPage()
         {
             this.InitializeComponent();
-        }
+			Debug.WriteLine("Reached here as well");
+			this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+		}
+		protected override void OnNavigatedFrom(NavigationEventArgs e)
+		{
+			string s = e.Parameter.ToString();
+			PassingBag passingBag = Newtonsoft.Json.JsonConvert.DeserializeObject<PassingBag>(s);
+			this.Lawyers = new List<Lawyer>
+			{
+				new Lawyer
+				{
+					FullName = passingBag.lawyer.FullName, Designation = passingBag.lawyer.Designation,
+					LawyerID = passingBag.lawyer.LawyerID, Billables = passingBag.lawyer.Billables,
+					Password = passingBag.lawyer.Password, Phone =passingBag.lawyer.Phone
+				}
+			};
+			this.db = passingBag.db;
+		}
+		
+		
+		
+		
+
+		
+
     }
 }

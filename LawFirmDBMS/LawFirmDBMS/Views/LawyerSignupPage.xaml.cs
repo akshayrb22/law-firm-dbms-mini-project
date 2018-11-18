@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -13,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Template10.Services.NavigationService;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace LawFirmDBMS.Views
@@ -22,55 +24,46 @@ namespace LawFirmDBMS.Views
 	/// </summary>
 	public sealed partial class LawyerEntryPage : Page
 	{
+		public string connectionString;
 		public LawyerEntryPage()
 		{
 			this.InitializeComponent();
-			SQLiteDb db = new SQLiteDb("Foreign Keys=True;data source=G:\\lawfirmdbms\\LawFirmDBMS\\LawFirmDBMS\\LawFirmDBMS.db");
+			Debug.WriteLine("Reached here");
+			
 		}
 		//TODO: Add verification for telephone numbers.
 		//TODO: Add upload profile picture.
 		Lawyer lawyer = new Lawyer();
-		SQLiteDb db = new SQLiteDb("Foreign Keys=True;data source=G:\\lawfirmdbms\\LawFirmDBMS\\LawFirmDBMS\\LawFirmDBMS.db");
+		SqlDB db = new SqlDB();
+		Frame frame = Window.Current.Content as Frame;
+
+
 		private void SubmitButtonClick(object sender, RoutedEventArgs e)
 		{
-			lawyer.LawyerID = Convert.ToInt32(lawyerID.Text);
 			lawyer.Password = password.Password;
-			lawyer.FirstName = firstName.Text;
-			lawyer.LastName = lastName.Text;
-			lawyer.Phone = phoneNumber.ToString();
+			lawyer.FullName = fullName.Text;
+			lawyer.Phone = phoneNumber.Text;
 			lawyer.Designation = designation.SelectedItem.ToString();
 			db.InsertIntoLawyer(lawyer);
-			//TODO: Define a method to send this lawyer object to the database.
-
-		}
-		//public void AddToDatabase(Lawyer lawyer)
-		//{
-		//	using (SQLiteConnection connection = new SQLiteConnection()
-		//	{
-
-		//	}
-		//}
-	}
-	public class Lawyer
-	{
-		public int LawyerID { get; set; }
-
-		public string FirstName { get; set; }
-
-		public string LastName { get; set; }
-
-		public string Designation { get; set; }
-
-		public string Phone { get; set; }
-
-		public string Password { get; set; }
-
-		public string FullName {
-			get
+			PassingBag passingBag = new PassingBag(lawyer, db);
+			string serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(passingBag);
+			try
 			{
-				return(FirstName + " " + LastName);
+				//Frame.Navigate(typeof(Views.MainPage), serializedObject);
+				frame = new Frame();
+				frame.Navigate(typeof(Views.LawyerViewPage));
+				//GotoLawyerViewPage(serializedObject);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine("Exception thrown is: " + ex.ToString());
+				throw;
 			}
 		}
-		public int Billables { get; set; }
+		//public void GotoLawyerViewPage(string serializedObject)
+		//{
+		//	navServ.Navigate(typeof(Views.LawyerViewPage), serializedObject);
+		//}
 	}
+	
 }

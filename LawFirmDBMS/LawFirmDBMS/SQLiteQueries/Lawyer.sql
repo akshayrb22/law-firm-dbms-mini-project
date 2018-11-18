@@ -1,4 +1,4 @@
-﻿-- Script Date: 12-Nov-18 11:15 PM  - ErikEJ.SqlCeScripting version 3.5.2.75
+﻿-- Script Date: 16-Nov-18 11:14 AM  - ErikEJ.SqlCeScripting version 3.5.2.75
 CREATE TABLE [LAWYER] (
   [L_ID] INTEGER NOT NULL
 , [NAME] TEXT NOT NULL

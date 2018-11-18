@@ -1,111 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="CASES" Category="Table" Bounds="-19.8139500244956,91.0147714736263,263.320802614705,197.931797497559" Group="Expanded" Label="CASES" />
-    <Node Id="CASES_CASE_ID" Category="Field Primary" Bounds="0.186049975504453,186.974971473626,64.2,25.96" Description="bigint" Label="CASE_ID" />
-    <Node Id="CASES_CL_ID" Category="Field Foreign" Bounds="0.233519256876491,131.014871473626,50,25.96" Description="bigint" Label="CL_ID" />
-    <Node Id="CASES_COURTROOM_NO" Category="Field" Bounds="0.233522985676949,242.986468971185,116.256666666667,25.96" Description="text" Label="COURTROOM_NO" />
-    <Node Id="CASES_HOURS_BILLED" Category="Field" Bounds="94.3860499755044,186.974971473626,100.196666666667,25.96" Description="bigint" Label="HOURS_BILLED" />
-    <Node Id="CASES_STAGE" Category="Field" Bounds="80.2335192568765,131.014871473626,53.65,25.96" Description="text" Label="STAGE" />
-    <Node Id="CASES_STATUS " Category="Field" Bounds="163.883519256877,131.014871473626,59.6233333333333,25.96" Description="text" Label="STATUS " />
-    <Node Id="CASE_RECORD" Category="Table" Bounds="-194.86767877627,-80.9056285263737,181.476668192546,141.9203" Group="Expanded" Label="CASE_RECORD" />
-    <Node Id="CASE_RECORD_CASE_ID" Category="Field Primary" Bounds="-174.86767877627,15.0545714736263,64.2,25.96" Description="bigint" Label="CASE_ID" />
-    <Node Id="CASE_RECORD_DOC_ID" Category="Field Primary" Bounds="-94.8676772503911,-40.9055285263737,61.4766666666667,25.96" Description="bigint" Label="DOC_ID" />
-    <Node Id="CASE_RECORD_P_ID" Category="Field Primary" Bounds="-174.867677250391,-40.9055285263737,50,25.96" Description="bigint" Label="P_ID" />
-    <Node Id="CLIENT" Category="Table" Bounds="17.1035158157379,-80.9056285263737,193.533333333333,141.9203" Group="Expanded" Label="CLIENT" />
-    <Node Id="CLIENT_CASE_ID" Category="Field Foreign" Bounds="126.436849149071,15.0545714736263,64.2,25.96" Description="bigint" Label="CASE_ID" />
-    <Node Id="CLIENT_CLIENT_ID" Bounds="219.47499786377,338.946768970967,116.78,25.96" Label="CLIENT_CLIENT_ID" />
-    <Node Id="CLIENT_CL_ID" Category="Field Primary" Bounds="37.1035175323486,-40.9055285263737,50,25.96" Description="bigint" Label="CL_ID" />
-    <Node Id="CLIENT_NAME" Category="Field" Bounds="117.10352238973,-40.9055285263737,53.5633333333333,25.96" Description="text" Label="NAME" />
-    <Node Id="CLIENT_PHONE" Category="Field" Bounds="37.1035158157379,15.0545714736263,59.3333333333333,25.96" Description="text" Label="PHONE" />
-    <Node Id="COUNSELS" Category="Table" Bounds="291.803037243338,-253.116108978302,97.8399999999999,141.9203" Group="Expanded" Label="COUNSELS" />
-    <Node Id="COUNSELS_CL_ID" Category="Field Primary" Bounds="315.723037243338,-213.116008978302,50,25.96" Description="bigint" Label="CL_ID" />
-    <Node Id="COUNSELS_L_ID" Category="Field Primary" Bounds="315.723037243338,-157.155908978302,50,25.96" Description="bigint" Label="L_ID" />
-    <Node Id="Database" Category="Database" Bounds="-214.86767877627,-293.115626999984,712.622584122364,602.062295971169" Group="Expanded" Label="LawFirmDBMS.db" />
-    <Node Id="HANDLES" Category="Table" Bounds="240.770186494199,-81.1818013806947,104.2,141.92" Group="Expanded" Label="HANDLES" />
-    <Node Id="HANDLES_CASE_ID" Category="Field Primary" Bounds="260.770186494199,14.7781986193054,64.2,25.96" Description="bigint" Label="CASE_ID" />
-    <Node Id="HANDLES_L_ID" Category="Field Primary" Bounds="260.770186494199,-41.1818013806947,50,25.96" Description="bigint" Label="L_ID" />
-    <Node Id="LAWYER" Category="Table" Bounds="273.985186494199,90.7381986193054,203.77,197.88" Group="Expanded" Label="LAWYER" />
-    <Node Id="LAWYER_BILLABLES" Category="Field" Bounds="383.318519827532,186.698198619305,74.4366666666667,25.96" Description="bigint" Label="BILLABLES" />
-    <Node Id="LAWYER_DESIGNATION" Category="Field" Bounds="293.985186494199,242.658198619305,95.6433333333334,25.96" Description="text" Label="DESIGNATION" />
-    <Node Id="LAWYER_L_ID" Category="Field Primary" Bounds="293.985186494199,130.738198619305,50,25.96" Description="bigint" Label="L_ID" />
-    <Node Id="LAWYER_NAME" Category="Field" Bounds="373.985186494199,130.738198619305,53.5633333333333,25.96" Description="text" Label="NAME" />
-    <Node Id="LAWYER_PHONE" Category="Field" Bounds="293.985186494199,186.698198619305,59.3333333333333,25.96" Description="text" Label="PHONE" />
-    <Node Id="PARALEGAL" Category="Table" Bounds="-61.9613590020519,-252.826028526374,101.9,141.9203" Group="Expanded" Label="PARALEGAL" UseManualLocation="True" />
-    <Node Id="PARALEGAL_PARALEGAL_ID" Bounds="24.1082182566325,338.946768970967,165.366666666667,25.96" Label="PARALEGAL_PARALEGAL_ID" />
-    <Node Id="PARALEGAL_PHONE" Category="Field" Bounds="-40.6780256687185,-156.865828526374,59.3333333333333,25.96" Description="text" Label="PHONE" UseManualLocation="True" />
-    <Node Id="PARALEGAL_P_ID" Category="Field Primary" Bounds="-40.6779697198245,-212.825928526374,50,25.96" Description="bigint" Label="P_ID" UseManualLocation="True" />
+    <Node Id="Database" Label="LawFirmDBMS.db" Category="Database" Group="Expanded" />
+    <Node Id="CASE_RECORD" Label="CASE_RECORD" Category="Table" Group="Collapsed" />
+    <Node Id="CASE_RECORD_DOC_ID" Label="DOC_ID" Category="Field Primary" Description="bigint" />
+    <Node Id="CASE_RECORD_CASE_ID" Label="CASE_ID" Category="Field Primary" Description="bigint" />
+    <Node Id="CASE_RECORD_P_ID" Label="P_ID" Category="Field Primary" Description="bigint" />
+    <Node Id="CASES" Label="CASES" Category="Table" Group="Collapsed" />
+    <Node Id="CASES_CASE_ID" Label="CASE_ID" Category="Field Primary" Description="bigint" />
+    <Node Id="CASES_STATUS " Label="STATUS " Category="Field" Description="text" />
+    <Node Id="CASES_HOURS_BILLED" Label="HOURS_BILLED" Category="Field" Description="bigint" />
+    <Node Id="CASES_CL_ID" Label="CL_ID" Category="Field Foreign" Description="bigint" />
+    <Node Id="CASES_STAGE" Label="STAGE" Category="Field" Description="text" />
+    <Node Id="CASES_COURTROOM_NO" Label="COURTROOM_NO" Category="Field" Description="text" />
+    <Node Id="CASES_NAME" Label="NAME" Category="Field Optional" Description="text" />
+    <Node Id="CLIENT" Label="CLIENT" Category="Table" Group="Collapsed" />
+    <Node Id="CLIENT_CL_ID" Label="CL_ID" Category="Field Primary" Description="bigint" />
+    <Node Id="CLIENT_NAME" Label="NAME" Category="Field" Description="text" />
+    <Node Id="CLIENT_CASE_ID" Label="CASE_ID" Category="Field Foreign" Description="bigint" />
+    <Node Id="CLIENT_PHONE" Label="PHONE" Category="Field" Description="text" />
+    <Node Id="COUNSELS" Label="COUNSELS" Category="Table" Group="Collapsed" />
+    <Node Id="COUNSELS_CL_ID" Label="CL_ID" Category="Field Primary" Description="bigint" />
+    <Node Id="COUNSELS_L_ID" Label="L_ID" Category="Field Primary" Description="bigint" />
+    <Node Id="HANDLES" Label="HANDLES" Category="Table" Group="Collapsed" />
+    <Node Id="HANDLES_L_ID" Label="L_ID" Category="Field Primary" Description="bigint" />
+    <Node Id="HANDLES_CASE_ID" Label="CASE_ID" Category="Field Primary" Description="bigint" />
+    <Node Id="LAWYER" Label="LAWYER" Category="Table" Group="Collapsed" />
+    <Node Id="LAWYER_L_ID" Label="L_ID" Category="Field Primary" Description="bigint" />
+    <Node Id="LAWYER_NAME" Label="NAME" Category="Field" Description="text" />
+    <Node Id="LAWYER_DESIGNATION" Label="DESIGNATION" Category="Field" Description="text" />
+    <Node Id="LAWYER_BILLABLES" Label="BILLABLES" Category="Field" Description="bigint" />
+    <Node Id="LAWYER_PHONE" Label="PHONE" Category="Field" Description="text" />
+    <Node Id="LAWYER_PASSWORD" Label="PASSWORD" Category="Field" Description="text" />
+    <Node Id="PARALEGALS" Label="PARALEGALS" Category="Table" Group="Collapsed" />
+    <Node Id="PARALEGALS_P_ID" Label="P_ID" Category="Field Primary" Description="bigint" />
+    <Node Id="PARALEGALS_PHONE" Label="PHONE" Category="Field" Description="text" />
   </Nodes>
   <Links>
-    <Link Source="CASES" Target="CASES_CASE_ID" Category="Contains" />
-    <Link Source="CASES" Target="CASES_CL_ID" Category="Contains" />
-    <Link Source="CASES" Target="CASES_COURTROOM_NO" Category="Contains" />
-    <Link Source="CASES" Target="CASES_HOURS_BILLED" Category="Contains" />
-    <Link Source="CASES" Target="CASES_STAGE" Category="Contains" />
-    <Link Source="CASES" Target="CASES_STATUS " Category="Contains" />
-    <Link Source="CASES_CL_ID" Target="CLIENT_CLIENT_ID" Category="Foreign Key" Label="FK_CASES_0_0" />
-    <Link Source="CASE_RECORD" Target="CASE_RECORD_CASE_ID" Category="Contains" />
+    <Link Source="Database" Target="CASE_RECORD" Category="Contains" />
     <Link Source="CASE_RECORD" Target="CASE_RECORD_DOC_ID" Category="Contains" />
+    <Link Source="CASE_RECORD" Target="CASE_RECORD_CASE_ID" Category="Contains" />
     <Link Source="CASE_RECORD" Target="CASE_RECORD_P_ID" Category="Contains" />
-    <Link Source="CASE_RECORD_CASE_ID" Target="CASES_CASE_ID" Category="Foreign Key" Label="FK_CASE_RECORD_1_0" />
-    <Link Source="CASE_RECORD_P_ID" Target="PARALEGAL_PARALEGAL_ID" Category="Foreign Key" Label="FK_CASE_RECORD_0_0" />
-    <Link Source="CLIENT" Target="CLIENT_CASE_ID" Category="Contains" />
+    <Link Source="CASE_RECORD_P_ID" Target="PARALEGAL_PARALEGAL_ID" Label="FK_CASE_RECORD_0_0" Category="Foreign Key" />
+    <Link Source="CASE_RECORD_CASE_ID" Target="CASES_CASE_ID" Label="FK_CASE_RECORD_1_0" Category="Foreign Key" />
+    <Link Source="Database" Target="CASES" Category="Contains" />
+    <Link Source="CASES" Target="CASES_CASE_ID" Category="Contains" />
+    <Link Source="CASES" Target="CASES_STATUS " Category="Contains" />
+    <Link Source="CASES" Target="CASES_HOURS_BILLED" Category="Contains" />
+    <Link Source="CASES" Target="CASES_CL_ID" Category="Contains" />
+    <Link Source="CASES" Target="CASES_STAGE" Category="Contains" />
+    <Link Source="CASES" Target="CASES_COURTROOM_NO" Category="Contains" />
+    <Link Source="CASES" Target="CASES_NAME" Category="Contains" />
+    <Link Source="CASES_CL_ID" Target="CLIENT_CL_ID" Label="FK_CASES_0_0" Category="Foreign Key" />
+    <Link Source="Database" Target="CLIENT" Category="Contains" />
     <Link Source="CLIENT" Target="CLIENT_CL_ID" Category="Contains" />
     <Link Source="CLIENT" Target="CLIENT_NAME" Category="Contains" />
+    <Link Source="CLIENT" Target="CLIENT_CASE_ID" Category="Contains" />
     <Link Source="CLIENT" Target="CLIENT_PHONE" Category="Contains" />
-    <Link Source="CLIENT_CASE_ID" Target="CASES_CASE_ID" Category="Foreign Key" Label="FK_CLIENT_0_0" />
+    <Link Source="CLIENT_CASE_ID" Target="CASES_CASE_ID" Label="FK_CLIENT_0_0" Category="Foreign Key" />
+    <Link Source="Database" Target="COUNSELS" Category="Contains" />
     <Link Source="COUNSELS" Target="COUNSELS_CL_ID" Category="Contains" />
     <Link Source="COUNSELS" Target="COUNSELS_L_ID" Category="Contains" />
-    <Link Source="COUNSELS_CL_ID" Target="CLIENT_CL_ID" Category="Foreign Key" Bounds="93.2142909653522,-187.400899643334,259.4379870889,142.152356267699" Label="FK_COUNSELS_1_0" />
-    <Link Source="COUNSELS_L_ID" Target="LAWYER_L_ID" Category="Foreign Key" Label="FK_COUNSELS_0_0" />
-    <Link Source="Database" Target="CASES" Category="Contains" />
-    <Link Source="Database" Target="CASE_RECORD" Category="Contains" />
-    <Link Source="Database" Target="CLIENT" Category="Contains" />
-    <Link Source="Database" Target="COUNSELS" Category="Contains" />
+    <Link Source="COUNSELS_L_ID" Target="LAWYER_L_ID" Label="FK_COUNSELS_0_0" Category="Foreign Key" />
+    <Link Source="COUNSELS_CL_ID" Target="CLIENT_CL_ID" Label="FK_COUNSELS_1_0" Category="Foreign Key" />
     <Link Source="Database" Target="HANDLES" Category="Contains" />
-    <Link Source="Database" Target="LAWYER" Category="Contains" />
-    <Link Source="Database" Target="PARALEGAL" Category="Contains" />
-    <Link Source="HANDLES" Target="HANDLES_CASE_ID" Category="Contains" />
     <Link Source="HANDLES" Target="HANDLES_L_ID" Category="Contains" />
-    <Link Source="HANDLES_CASE_ID" Target="CASES_CASE_ID" Category="Foreign Key" Label="FK_HANDLES_0_0" />
-    <Link Source="HANDLES_L_ID" Target="LAWYER_L_ID" Category="Foreign Key" Label="FK_HANDLES_1_0" />
-    <Link Source="LAWYER" Target="LAWYER_BILLABLES" Category="Contains" />
-    <Link Source="LAWYER" Target="LAWYER_DESIGNATION" Category="Contains" />
+    <Link Source="HANDLES" Target="HANDLES_CASE_ID" Category="Contains" />
+    <Link Source="HANDLES_CASE_ID" Target="CASES_CASE_ID" Label="FK_HANDLES_0_0" Category="Foreign Key" />
+    <Link Source="HANDLES_L_ID" Target="LAWYER_L_ID" Label="FK_HANDLES_1_0" Category="Foreign Key" />
+    <Link Source="Database" Target="LAWYER" Category="Contains" />
     <Link Source="LAWYER" Target="LAWYER_L_ID" Category="Contains" />
     <Link Source="LAWYER" Target="LAWYER_NAME" Category="Contains" />
+    <Link Source="LAWYER" Target="LAWYER_DESIGNATION" Category="Contains" />
+    <Link Source="LAWYER" Target="LAWYER_BILLABLES" Category="Contains" />
     <Link Source="LAWYER" Target="LAWYER_PHONE" Category="Contains" />
-    <Link Source="PARALEGAL" Target="PARALEGAL_PHONE" Category="Contains" />
-    <Link Source="PARALEGAL" Target="PARALEGAL_P_ID" Category="Contains" />
-    <Link Source="PARALEGAL_P_ID" Target="CASE_RECORD_P_ID" Bounds="-116.130373233196,-186.175919065988,606.292726748821,149.646865686821" />
+    <Link Source="LAWYER" Target="LAWYER_PASSWORD" Category="Contains" />
+    <Link Source="Database" Target="PARALEGALS" Category="Contains" />
+    <Link Source="PARALEGALS" Target="PARALEGALS_P_ID" Category="Contains" />
+    <Link Source="PARALEGALS" Target="PARALEGALS_PHONE" Category="Contains" />
   </Links>
-  <Categories>
-    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
-    <Category Id="Database" />
-    <Category Id="Field" />
-    <Category Id="Field Foreign" />
-    <Category Id="Field Primary" />
-    <Category Id="Foreign Key" />
-    <Category Id="Table" />
-  </Categories>
-  <Properties>
-    <Property Id="Bounds" DataType="System.Windows.Rect" />
-    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
-    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
-    <Property Id="Description" Label="Description" Description="Description" DataType="System.String" />
-    <Property Id="Expression" DataType="System.String" />
-    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
-    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
-    <Property Id="GroupLabel" DataType="System.String" />
-    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
-    <Property Id="IsContainment" DataType="System.Boolean" />
-    <Property Id="IsEnabled" DataType="System.Boolean" />
-    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
-    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
-    <Property Id="TargetType" DataType="System.Type" />
-    <Property Id="UseManualLocation" DataType="System.Boolean" />
-    <Property Id="Value" DataType="System.String" />
-    <Property Id="ValueLabel" DataType="System.String" />
-  </Properties>
   <Styles>
     <Style TargetType="Node" GroupLabel="Table" ValueLabel="True">
       <Condition Expression="HasCategory('Table')" />
