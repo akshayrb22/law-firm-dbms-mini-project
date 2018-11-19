@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -27,5 +28,29 @@ namespace LawFirmDBMS.Views
 			this.InitializeComponent();
 		}
 
+		private void ButtonClick(object sender, RoutedEventArgs e)
+		{
+			Case _case = new Case
+			{
+				Title = title.Text,
+				Status = "Created",
+				HoursBilled = 1, 
+				ClientID = Convert.ToInt32(client_id.Text), 
+				CourtroomNumber = courtroomNumber.Text				
+			};
+			SqlDB db = new SqlDB();
+			db.InsertIntoCases(_case);
+			PassingBag passingBag = new PassingBag(_case);
+			Frame frame = Window.Current.Content as Frame;
+			try
+			{
+				frame.Navigate(typeof(Views.CaseViewUpdatePage), passingBag);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine("Exception:" + ex.ToString());
+				throw;
+			}
+		}
 	}
 }

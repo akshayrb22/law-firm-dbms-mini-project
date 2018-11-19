@@ -27,30 +27,10 @@
 			</controls:PageHeader.SecondaryCommands>
 
 		</controls:PageHeader>
-
-		<Custom:DataGrid HorizontalAlignment="Left" Height="821" 
-						 VerticalAlignment="Top" Width="1295" 
-						 Margin="103,90,0,0" AutoGenerateColumns="False"	
-						 ItemsSource="{x:Bind Lawyers}">
-			<Custom:DataGrid.Columns>
-				<Custom:DataGridTextColumn
-					Header="Name"
-					Binding="{Binding FullName}"
-					FontSize="20"/>
-				<Custom:DataGridTextColumn
-					Header="Designation"
-					Binding="{Binding Designation}"
-					FontSize="20"/>
-				<Custom:DataGridTextColumn
-					Header="Billables"
-					Binding="{Binding Billables}"
-					FontSize="20"/>
-				<Custom:DataGridTextColumn
-					Header="Phone"
-					Binding="{Binding Phone}"
-					FontSize="20"/>
-			</Custom:DataGrid.Columns>
-		</Custom:DataGrid>
+		<TextBlock x:Name="name" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.FullName}" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160" Margin="80,0,0,-240"/>
+		<TextBlock x:Name="designation" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.Designation}" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160" Margin="480,0,0,-240"/>
+		<TextBlock x:Name="billables" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.Billables}" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Margin="80,440,0,0"/>
+		<TextBlock x:Name="phone" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.Phone}" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Margin="480,440,0,0"/>
 
 
 

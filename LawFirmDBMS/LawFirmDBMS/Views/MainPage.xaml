@@ -10,89 +10,62 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:LawFirmDBMS.ViewModels" mc:Ignorable="d">
 
-    <Page.DataContext>
-        <vm:MainPageViewModel x:Name="ViewModel" />
-    </Page.DataContext>
+	<Page.DataContext>
+		<vm:MainPageViewModel x:Name="ViewModel" />
+	</Page.DataContext>
 
-    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
-                <VisualState x:Name="VisualStateNarrow">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!--  TODO: change properties for narrow view  -->
-                        <Setter Target="stateTextBox.Text" Value="Narrow Visual State" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="VisualStateNormal">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!--  TODO: change properties for normal view  -->
-                        <Setter Target="stateTextBox.Text" Value="Normal Visual State" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="VisualStateWide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!--  TODO: change properties for wide view  -->
-                        <Setter Target="stateTextBox.Text" Value="Wide Visual State" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup x:Name="AdaptiveVisualStateGroup">
+				<VisualState x:Name="VisualStateNarrow">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<!--  TODO: change properties for narrow view  -->
+						<Setter Target="stateTextBox.Text" Value="Narrow Visual State" />
+					</VisualState.Setters>
+				</VisualState>
+				<VisualState x:Name="VisualStateNormal">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<!--  TODO: change properties for normal view  -->
+						<Setter Target="stateTextBox.Text" Value="Normal Visual State" />
+					</VisualState.Setters>
+				</VisualState>
+				<VisualState x:Name="VisualStateWide">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<!--  TODO: change properties for wide view  -->
+						<Setter Target="stateTextBox.Text" Value="Wide Visual State" />
+					</VisualState.Setters>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
 
-        <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
+		<controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True" Text="Main Page">
-	
 
-					<!--  secondary commands  -->
-            <controls:PageHeader.SecondaryCommands>
-                <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
-                <AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
+
+			<!--  secondary commands  -->
+			<controls:PageHeader.SecondaryCommands>
+				<AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
+				<AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
 				<AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
 			</controls:PageHeader.SecondaryCommands>
 
-        </controls:PageHeader>
+		</controls:PageHeader>
+		<Button x:Name="caseEntryLink" Content="Enter Cases" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="200" Margin="50,116,0,0" Click="CaseEntryLinkClick"/>
+		<Button x:Name="clientEntryLink" Content="Enter Clients" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="200" Margin="491,110,0,0" Click="ClientEntryLinkClick"/>
+		<Button x:Name="caseUpdateLink" Content="Update Cases" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="200" Margin="491,465,0,0" Click="CaseUpdateLinkClick"/>
+		<Button x:Name="clientUpdate" Content="Update Client" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="200" Margin="50,465,0,0" Click="ClientUpdateClick"/>
+		<Button x:Name="lawyerUpdateLink" Content="Update profile details" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="240" Margin="250,270,0,0" Click="LawyerUpdateLinkClick"/>
 
-        <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0"
-                          RelativePanel.AlignLeftWithPanel="True"
-                          RelativePanel.Below="pageHeader">
-
-            <TextBox MinWidth="150" MinHeight="62"
-                     Header="Parameter to pass"
-                     Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     TextWrapping="Wrap">
-                <Interactivity:Interaction.Behaviors>
-                    <!--  enable submit on enter key  -->
-                    <Behaviors:KeyBehavior Key="Enter">
-                        <Core:CallMethodAction MethodName="GotoDetailsPage" TargetObject="{Binding}" />
-                    </Behaviors:KeyBehavior>
-                    <!--  focus on textbox when page loads  -->
-                    <Core:EventTriggerBehavior>
-                        <Behaviors:FocusAction />
-                    </Core:EventTriggerBehavior>
-                </Interactivity:Interaction.Behaviors>
-            </TextBox>
-
-        </controls:Resizer>
-
-        <Button x:Name="submitButton"
-                Click="{x:Bind ViewModel.GotoDetailsPage}" Content="Submit"
-                RelativePanel.AlignBottomWith="parameterResizer"
-                RelativePanel.RightOf="parameterResizer" />
-
-        <TextBlock x:Name="stateTextBox" Margin="16,16,0,0"
-                   RelativePanel.AlignLeftWith="parameterResizer"
-                   RelativePanel.Below="parameterResizer"
-                   Text="Current Visual State" />
-
-    </RelativePanel>
+	</RelativePanel>
 </Page>

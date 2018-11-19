@@ -23,10 +23,10 @@ namespace LawFirmDBMS.Views
     /// </summary>
     public sealed partial class LawyerViewPage : Page
     {
-		public Lawyer lawyer { get; set; }
+		public Lawyer Lawyer { get; set; }
 		//Lawyer lawyer = new Lawyer();
 		//SqlDB db = new SqlDB();
-		public SqlDB db { get; set; }
+		public SqlDB Db { get; set; }
 		public List<Lawyer> Lawyers { get; set; }
 		public LawyerViewPage()
         {
@@ -34,27 +34,31 @@ namespace LawFirmDBMS.Views
 			Debug.WriteLine("Reached here as well");
 			this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
 		}
-		protected override void OnNavigatedFrom(NavigationEventArgs e)
+		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
-			string s = e.Parameter.ToString();
-			PassingBag passingBag = Newtonsoft.Json.JsonConvert.DeserializeObject<PassingBag>(s);
-			this.Lawyers = new List<Lawyer>
+			base.OnNavigatedTo(e);
+			try
 			{
-				new Lawyer
+				var v = e.Parameter.GetType() == typeof(PassingBag);
+				if (v)
 				{
-					FullName = passingBag.lawyer.FullName, Designation = passingBag.lawyer.Designation,
-					LawyerID = passingBag.lawyer.LawyerID, Billables = passingBag.lawyer.Billables,
-					Password = passingBag.lawyer.Password, Phone =passingBag.lawyer.Phone
+					PassingBag passingBag = (PassingBag)e.Parameter;
+					Db = passingBag.Db;
+					Lawyer = passingBag.Lawyer;
 				}
-			};
-			this.db = passingBag.db;
+				else if (LoginPage.loggedIn == true)
+				{
+					//Lawyer = Db.GetLawyer();
+					// TODO: Send the current lawyer data to the memory to access it anytime
+				}
+			}
+			catch (NullReferenceException nre)
+			{
+
+				Debug.WriteLine(nre);
+				throw;
+			}			
+			//lawyer = db.GetLawyer(passingBag.lawyer.Password, passingBag.lawyer.Phone);
 		}
-		
-		
-		
-		
-
-		
-
     }
 }

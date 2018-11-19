@@ -7,7 +7,7 @@ using Template10.Mvvm;
 
 namespace LawFirmDBMS.ViewModels
 {
-	class ClientDisplayPageViewModel : ViewModelBase
+	class ClientUpdatePageViewModel : ViewModelBase
 	{
 		public void GotoDetailsPage() =>
 			NavigationService.Navigate(typeof(Views.DetailPage));

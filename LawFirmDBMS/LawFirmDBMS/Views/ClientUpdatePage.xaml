@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="LawFirmDBMS.Views.CaseEntryPage"
+    x:Class="LawFirmDBMS.Views.ClientUpdatePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LawFirmDBMS.Views"
@@ -11,13 +11,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 	<Page.DataContext>
-		<vm:CaseEntryPageViewModel x:Name="ViewModel"/>
+		<vm:ClientUpdatePageViewModel x:Name="ViewModel" />
 	</Page.DataContext>
-
-	<RelativePanel>
+	<RelativePanel HorizontalAlignment="Center" Height="1000" Margin="0,0,0,0" VerticalAlignment="Center" Width="1500">
 		<controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="Case Entry Page">
+                             RelativePanel.AlignTopWithPanel="True" Text="Client Update Page">
+
 
 			<!--  secondary commands  -->
 			<controls:PageHeader.SecondaryCommands>
@@ -25,20 +25,7 @@
 				<AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
 				<AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
 			</controls:PageHeader.SecondaryCommands>
+
 		</controls:PageHeader>
-		<TextBox x:Name="title" HorizontalAlignment="Left" 
-				 Text="" Width="321" Margin="80,175,0,-226" Header="Title" VerticalAlignment="Stretch"/>
-		<TextBox x:Name="courtroomNumber" Header="Courtroom Number" 
-				 Margin="80,0,0,-390" HorizontalAlignment="Left" 
-				 Width="241" VerticalAlignment="Bottom" Height="60"/>
-		<Button x:Name="button" Content="Submit" 
-				HorizontalAlignment="Left" VerticalAlignment="Bottom" 
-				Margin="80,0,0,-640" Height="32" 
-				Width="100" Click="ButtonClick"/>
-		<TextBox x:Name="client_id" HorizontalAlignment="Left" 
-				 Height="60" Text="" VerticalAlignment="Top" 
-				 Width="241" Margin="80,500,0,0"
-				 Header="Client ID"
-				 />
 	</RelativePanel>
 </Page>

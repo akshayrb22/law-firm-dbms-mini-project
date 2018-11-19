@@ -5,10 +5,26 @@
     xmlns:local="using:LawFirmDBMS.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+	xmlns:vm="using:LawFirmDBMS.ViewModels"
+	xmlns:controls="using:Template10.Controls"
+	mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Page.DataContext>
+		<vm:ClientDisplayPageViewModel x:Name="ViewModel" />
+	</Page.DataContext>
+	<RelativePanel HorizontalAlignment="Center" Height="1000" Margin="0,0,0,0" VerticalAlignment="Center" Width="1500">
+		<controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True" Text="Client Display Page">
 
-    <Grid>
 
-    </Grid>
+			<!--  secondary commands  -->
+			<controls:PageHeader.SecondaryCommands>
+				<AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
+				<AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
+				<AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
+			</controls:PageHeader.SecondaryCommands>
+
+		</controls:PageHeader>
+	</RelativePanel>
 </Page>

@@ -12,7 +12,7 @@ namespace LawFirmDBMS
 {
 	public class SqlDB
     {
-		const string path = "server=127.0.0.1;user id=root;database=law_firm";
+		const string path = "server=127.0.0.1;user id=root;password=root;database=law_firm";
 		MySqlConnection connection = new MySqlConnection(path);
         public void InsertIntoLawyer(Lawyer lawyer)
         {
@@ -29,6 +29,7 @@ namespace LawFirmDBMS
 
 				connection.Open();
 				insert.ExecuteNonQuery();
+				connection.Close();
 			}
 			catch(Exception e)
 			{
@@ -71,15 +72,17 @@ namespace LawFirmDBMS
 		{
 			try
 			{
-				string caseInsert = "INSERT INTO CASE(status, hours_billed, title, courtroom_number, cl_id) VALUES(@status, " +
+				string caseInsert = "INSERT INTO CASES(status, hours_billed, title, courtroom_number, cl_id) VALUES(@status, " +
 					"@hours_billed, @title, @courtroom_number, @cl_id);";
 				MySqlCommand insert = new MySqlCommand(caseInsert, connection);
 				insert.Parameters.AddWithValue("@status", _case.Status);
 				insert.Parameters.AddWithValue("@hours_billed", _case.HoursBilled);
 				insert.Parameters.AddWithValue("@title", _case.Title);
 				insert.Parameters.AddWithValue("@courtroom_number", _case.CourtroomNumber);
+				insert.Parameters.AddWithValue("@cl_id", _case.ClientID);
 				connection.Open();
 				insert.ExecuteNonQuery();
+				connection.Close();
 			}
 			catch (Exception e)
 			{
@@ -113,18 +116,35 @@ namespace LawFirmDBMS
 			cases.Close();
 			return caseList;
 		}
+		public void DeleteFromCases(int caseID)
+		{
+			try
+			{
+				string caseDelete = "DELETE FROM CASE WHERE case_id = @case_id;";
+				MySqlCommand delete = new MySqlCommand(caseDelete, connection);
+				delete.Parameters.AddWithValue("@case_id", caseID);
+				connection.Open();
+				delete.ExecuteNonQuery();
+				connection.Close();
+			}
+			catch (Exception e)
+			{
+				Debug.WriteLine(e);
+				throw;
+			}
+		}
 		public void InsertIntoClient(Client client)
 		{
 			try
 			{
-				string caseInsert = "INSERT INTO CLIENT(cl_id, name, case_id, phone) VALUES(@cl_id, @name, @case_id, @phone);";
+				string caseInsert = "INSERT INTO CLIENT(cl_id, name, phone) VALUES(@cl_id, @name, @phone);";
 				MySqlCommand insert = new MySqlCommand(caseInsert, connection);
 				insert.Parameters.AddWithValue("@cl_id", client.ClientID);
 				insert.Parameters.AddWithValue("@name", client.FullName);
-				insert.Parameters.AddWithValue("@case_id", client.CaseID);
 				insert.Parameters.AddWithValue("@phone", client.Phone);
 				connection.Open();
 				insert.ExecuteNonQuery();
+				connection.Close();
 			}
 			catch (Exception e)
 			{
@@ -146,8 +166,7 @@ namespace LawFirmDBMS
 					{
 						ClientID = clients.GetInt32(0),
 						FullName = clients.GetString(1),
-						CaseID = clients.GetInt32(2),
-						Phone = clients.GetString(3)
+						Phone = clients.GetString(2)
 					};
 					clientList.Add(client);
 					clients.NextResult();
@@ -156,6 +175,23 @@ namespace LawFirmDBMS
 			clients.Close();
 			return clientList;
 
+		}
+		public void DeleteFromClient(int clientID)
+		{
+			try
+			{
+				string clientDelete = "DELETE FROM CASE WHERE cl_id = @cl_id;";
+				MySqlCommand delete = new MySqlCommand(clientDelete, connection);
+				delete.Parameters.AddWithValue("@case_id", clientID);
+				connection.Open();
+				delete.ExecuteNonQuery();
+				connection.Close();
+			}
+			catch (Exception e)
+			{
+				Debug.WriteLine(e);
+				throw;
+			}
 		}
 
 	}
@@ -182,9 +218,6 @@ namespace LawFirmDBMS
 		public string FullName { get; set; }
 
 		public string Phone { get; set; }
-
-		public int CaseID { get; set; }
-
 	}
 
 	public class Case

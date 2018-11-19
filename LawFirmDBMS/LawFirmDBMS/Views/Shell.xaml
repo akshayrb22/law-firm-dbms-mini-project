@@ -55,7 +55,17 @@
 								Symbol="Bullets"/>
 					<TextBlock Margin="12,0,0,0"
                                VerticalAlignment="Center"
-                               Text="Enter Client Details" />
+                               Text="Enter Case Details" />
+				</StackPanel>
+			</Controls:HamburgerButtonInfo>
+			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:ClientDisplayPage" PageParameter="5">
+				<StackPanel Orientation="Horizontal">
+					<SymbolIcon Width="48"
+								Height="48"
+								Symbol="ShowResults"/>
+					<TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Display Client Details" />
 				</StackPanel>
 			</Controls:HamburgerButtonInfo>
 		</Controls:HamburgerMenu.PrimaryButtons>

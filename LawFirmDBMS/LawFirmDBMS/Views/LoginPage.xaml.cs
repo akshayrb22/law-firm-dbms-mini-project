@@ -31,9 +31,11 @@ namespace LawFirmDBMS.Views
 		{
 			this.InitializeComponent();
 			NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+			
 		}
 		string passwordEntered;
 		string phoneEntered;
+		public static bool loggedIn;
 		Lawyer lawyer = new Lawyer();
 		SqlDB db = new SqlDB();
 
@@ -42,7 +44,7 @@ namespace LawFirmDBMS.Views
 		{
 			passwordEntered = password.Password;
 			phoneEntered = phone.Text;
-			
+			loggedIn = true;
 			Lawyer lawyer = db.GetLawyer(passwordEntered, phoneEntered);
 			if (lawyer.Phone == "")
 			{
@@ -52,7 +54,6 @@ namespace LawFirmDBMS.Views
 			{
 				PassingBag passingBag = new PassingBag(lawyer, db);
 				GotoLawyerViewPage(passingBag);
-				
 			}
 
 		}
@@ -63,12 +64,23 @@ namespace LawFirmDBMS.Views
 	}
 	public class PassingBag
 	{
-		public Lawyer lawyer { get; set; }
-		public SqlDB db { get; set; }
+		public Lawyer Lawyer { get; set; }
+		public SqlDB Db { get; set; }
+		public Client Client { get; set; }
+		public Case _case { get; set; }
 		public PassingBag(Lawyer lawyer, SqlDB db)
 		{
-			this.lawyer = lawyer;
-			this.db = db;
+			this.Lawyer = lawyer;
+			this.Db = db;
 		}
+		public PassingBag(Client client)
+		{
+			this.Client = client;
+		}
+		public PassingBag(Case _case)
+		{
+			this._case = _case;
+		}
+
 	}
 }

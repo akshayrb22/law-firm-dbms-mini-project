@@ -101,9 +101,11 @@
     <Compile Include="Services\SettingsServices\SettingsService.cs" />
     <Compile Include="ViewModels\CaseDisplayPageViewModel.cs" />
     <Compile Include="ViewModels\CaseEntryPageViewModel.cs" />
+    <Compile Include="ViewModels\CaseRecParalegalEntryPageViewModel.cs" />
     <Compile Include="ViewModels\CaseUpdatePageViewModel.cs" />
     <Compile Include="ViewModels\ClientDisplayPageViewModel.cs" />
     <Compile Include="ViewModels\ClientEntryPageViewModel.cs" />
+    <Compile Include="ViewModels\ClientUpdatePageViewModel.cs" />
     <Compile Include="ViewModels\LawyerDisplayPageViewModel.cs" />
     <Compile Include="ViewModels\LawyerSignupPageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
@@ -116,6 +118,9 @@
     <Compile Include="Views\CaseEntryPage.xaml.cs">
       <DependentUpon>CaseEntryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CaseRecordParalegalEntryPage.xaml.cs">
+      <DependentUpon>CaseRecordParalegalEntryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CaseUpdatePage.xaml.cs">
       <DependentUpon>CaseUpdatePage.xaml</DependentUpon>
     </Compile>
@@ -127,6 +132,9 @@
     </Compile>
     <Compile Include="Views\ClientEntryPage.xaml.cs">
       <DependentUpon>ClientEntryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClientUpdatePage.xaml.cs">
+      <DependentUpon>ClientUpdatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
@@ -198,6 +206,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CaseRecordParalegalEntryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CaseUpdatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,6 +225,10 @@
     <Page Include="Views\ClientEntryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ClientUpdatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DetailPage.xaml">
       <SubType>Designer</SubType>

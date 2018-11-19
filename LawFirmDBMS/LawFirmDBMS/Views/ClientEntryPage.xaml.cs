@@ -27,12 +27,14 @@ namespace LawFirmDBMS.Views
             this.InitializeComponent();
         }
 		Client client = new Client();
-
-		private void Submit_Click(object sender, RoutedEventArgs e)
+		SqlDB db = new SqlDB();
+		private void SubmitClick(object sender, RoutedEventArgs e)
 		{
 			client.ClientID = Convert.ToInt32(clientID.Text);
 			client.FullName = clientName.Text;
 			client.Phone = clientPhone.Text;
+			db.InsertIntoClient(client);
+
 		}
 		// TODO: Add check for phone number validation
 		// TODO: Add an upload picture bitton to take in a picture of the client 

@@ -51,7 +51,7 @@ namespace LawFirmDBMS.Views
 			{
 				//Frame.Navigate(typeof(Views.MainPage), serializedObject);
 				frame = new Frame();
-				frame.Navigate(typeof(Views.LawyerViewPage));
+				frame.Navigate(typeof(Views.LawyerViewPage), passingBag);
 				//GotoLawyerViewPage(serializedObject);
 			}
 			catch (Exception ex)

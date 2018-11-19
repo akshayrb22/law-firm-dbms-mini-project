@@ -51,6 +51,6 @@
 	  VerticalAlignment="Top"
 	  x:Name="clientPhone"
 	  Header="Phone*"/>
-		<Button x:Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="640,448,0,-151" VerticalAlignment="Stretch" Width="120" Click="Submit_Click"/>
+		<Button x:Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="80,608,0,-311" VerticalAlignment="Stretch" Width="120" Click="SubmitClick"/>
 	</RelativePanel>
 </Page>
