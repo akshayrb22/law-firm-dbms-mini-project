@@ -64,6 +64,9 @@ namespace LawFirmDBMS.Views
 	}
 	public class PassingBag
 	{
+		public CaseRecord CaseRecord { get; set; }
+		public Paralegal Paralegal { get; set; }
+
 		public Lawyer Lawyer { get; set; }
 		public SqlDB Db { get; set; }
 		public Client Client { get; set; }
@@ -82,5 +85,10 @@ namespace LawFirmDBMS.Views
 			this._case = _case;
 		}
 
+		public PassingBag(CaseRecord caseRecord, Paralegal paralegal)
+		{
+			this.CaseRecord = caseRecord;
+			this.Paralegal = paralegal;
+		}
 	}
 }

@@ -20,11 +20,24 @@ namespace LawFirmDBMS.Views
 	/// <summary>
 	/// An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
-	public sealed partial class CaseUpdatePage : Page
+	public sealed partial class CaseRecordParalegalDisplayPage : Page
 	{
-		public CaseUpdatePage()
+		public CaseRecordParalegalDisplayPage()
 		{
 			this.InitializeComponent();
 		}
+		CaseRecord caseRecord = new CaseRecord();
+		Paralegal paralegal = new Paralegal();
+		Frame frame = Window.Current.Content as Frame;
+
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+			PassingBag passingBag = (PassingBag)e.Parameter;
+			caseRecord = passingBag.CaseRecord;
+			paralegal = passingBag.Paralegal;
+		}
+
+
 	}
 }

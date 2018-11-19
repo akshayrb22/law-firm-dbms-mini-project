@@ -1,0 +1,32 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LawFirmDBMS.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Custom="using:Template10.Controls"
+	xmlns:vm="using:LawFirmDBMS.ViewModels"
+	x:Class="LawFirmDBMS.Views.CaseRecordParalegalDisplayPage"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	
+	
+	<Page.DataContext>
+		<vm:CaseRecordParalegalDisplayPageViewModel x:Name="ViewModel"/>
+	</Page.DataContext>
+	<RelativePanel>
+
+		<Custom:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
+			RelativePanel.AlignRightWithPanel="True"
+			RelativePanel.AlignTopWithPanel="True" Text="Case Record Display" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top">
+
+			<!--  secondary commands  -->
+			<Custom:PageHeader.SecondaryCommands>
+				<AppBarButton Click="{x:Bind Path=ViewModel.GotoSettings}" Label="Settings" />
+				<AppBarButton Click="{x:Bind Path=ViewModel.GotoPrivacy}" Label="Privacy" />
+				<AppBarButton Click="{x:Bind Path=ViewModel.GotoAbout}" Label="About" />
+			</Custom:PageHeader.SecondaryCommands>
+		</Custom:PageHeader>
+
+	</RelativePanel>
+</Page>

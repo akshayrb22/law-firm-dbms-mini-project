@@ -26,5 +26,24 @@ namespace LawFirmDBMS.Views
 		{
 			this.InitializeComponent();
 		}
+		Frame frame = Window.Current.Content as Frame;
+		CaseRecord caseRecord = new CaseRecord();
+		Paralegal paralegal = new Paralegal();
+		SqlDB db = new SqlDB();
+		private void SubmitClick(object sender, RoutedEventArgs e)
+		{
+			caseRecord.CaseID = Convert.ToInt32(case_id.Text);
+			caseRecord.DocID = Convert.ToInt32(doc_id.Text);
+			caseRecord.PID = Convert.ToInt32(p_id.Text);
+			paralegal.Phone = phone.Text;
+			paralegal.PID = Convert.ToInt32(p_id.Text);
+			paralegal.FullName = name.Text;
+
+			db.InsertIntoCaseRecords(caseRecord);
+			db.InsertIntoParalegal(paralegal);
+			PassingBag passingBag = new PassingBag(caseRecord, paralegal);
+			frame = new Frame();
+			frame.Navigate(typeof(Views.CaseRecordParalegalDisplayPage), passingBag);
+		}
 	}
 }

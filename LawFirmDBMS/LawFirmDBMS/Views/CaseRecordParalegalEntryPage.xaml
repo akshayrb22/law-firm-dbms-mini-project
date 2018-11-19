@@ -31,7 +31,8 @@
 		<TextBox x:Name="p_id" HorizontalAlignment="Left" Height="52" Text="" VerticalAlignment="Top" Width="140" Margin="80,128,0,0" Header="Paralegal ID"/>
 		<TextBox x:Name="phone" HorizontalAlignment="Left" Height="52" Text="" VerticalAlignment="Top" Width="140" Margin="320,128,0,0" Header="Phone"/>
 		<TextBox x:Name="doc_id" HorizontalAlignment="Left" Height="52" Text="" VerticalAlignment="Top" Width="140" Margin="560,128,0,0" Header="Document ID"/>
-		<TextBox x:Name="case_id" HorizontalAlignment="Left" Height="52" Text="" VerticalAlignment="Top" Width="140" Margin="80,288,0,0" Header="Case ID"/>
-		<TextBox x:Name="name" HorizontalAlignment="Left" Height="52" Text="" VerticalAlignment="Top" Width="140" Margin="320,288,0,0" Header="Name"/>
+		<TextBox x:Name="case_id" HorizontalAlignment="Left" Height="52" Text="" VerticalAlignment="Top" Width="140" Margin="80,291,0,0" Header="Case ID"/>
+		<TextBox x:Name="name" HorizontalAlignment="Left" Height="52" Text="" VerticalAlignment="Top" Width="140" Margin="320,291,0,0" Header="Name"/>
+		<Button x:Name="submit" Content="Submit" HorizontalAlignment="Left" Height="52" VerticalAlignment="Top" Width="140" Margin="560,291,0,0" Click="SubmitClick"/>
 	</RelativePanel>
 </Page>
