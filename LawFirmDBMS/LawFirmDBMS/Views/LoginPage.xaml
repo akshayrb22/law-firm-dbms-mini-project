@@ -28,17 +28,17 @@
 
 		</controls:PageHeader>
 		<TextBox x:Name="phone" HorizontalAlignment="Left" 
-				 Height="70" Text="" VerticalAlignment="Bottom" 
-				 Width="320" Margin="640,0,0,-400"
+				 Height="75" Text="" VerticalAlignment="Bottom" 
+				 Width="380" Margin="330,0,0,-210"
 				 Header="Phone Number"/>
 		<PasswordBox x:Name="password" HorizontalAlignment="Left" 
-				 Height="70" VerticalAlignment="Bottom" 
-				 Width="320" Margin="640,0,0,-640"
+				 Height="76" VerticalAlignment="Bottom" 
+				 Width="380" Margin="330,0,0,-470"
 				 Header="Password"/>
 		<Button x:Name="submitButton" Content="Submit" 
-				HorizontalAlignment="Left" Height="32" 
-				VerticalAlignment="Top" Width="160" 
-				Margin="720,770,0,0" Click="{x:Bind ViewModel.GotoLawyerViewPage}" />
+				HorizontalAlignment="Left" Height="35" 
+				VerticalAlignment="Top" Width="190" 
+				Margin="425,610,0,0" Click="SubmitButtonClick" />
 
 
 	</RelativePanel>

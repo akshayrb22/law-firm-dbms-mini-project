@@ -17,6 +17,8 @@ using LawFirmDBMS.Views;
 using LawFirmDBMS.ViewModels;
 using Template10.Services.NavigationService; 
 using Template10.Common;
+using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -36,7 +38,6 @@ namespace LawFirmDBMS.Views
 		string passwordEntered;
 		string phoneEntered;
 		public static bool loggedIn;
-		Lawyer lawyer = new Lawyer();
 		SqlDB db = new SqlDB();
 
 
@@ -44,51 +45,34 @@ namespace LawFirmDBMS.Views
 		{
 			passwordEntered = password.Password;
 			phoneEntered = phone.Text;
-			loggedIn = true;
-			Lawyer lawyer = db.GetLawyer(passwordEntered, phoneEntered);
-			if (lawyer.Phone == "")
+			try
 			{
-				MessageDialog message = new MessageDialog("Invalid Phone Number or Password.");
+				Lawyer lawyer = db.GetLawyer(passwordEntered, phoneEntered);
+				if (lawyer.Phone == "")
+				{
+					MessageDialog message = new MessageDialog("Invalid Phone Number or Password. Re-enter details.");
+				}
+				else
+				{
+					loggedIn = true;
+					PassingBag passingBag = new PassingBag(lawyer, loggedIn);
+					Frame.Navigate(typeof(Views.LawyerViewPage), passingBag);
+				}
 			}
-			else
+			catch (MySqlException ex)
 			{
-				PassingBag passingBag = new PassingBag(lawyer, db);
-				GotoLawyerViewPage(passingBag);
+				MessageDialog message = new MessageDialog("Invalid Phone Number or Password. Re-enter details.");
+				Debug.WriteLine(ex);
+				throw;
 			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+			}
+			
+			
 
-		}
-		public void GotoLawyerViewPage(PassingBag passingBag)
-		{
-			this.Frame.Navigate(typeof(Views.LawyerViewPage), passingBag);
 		}
 	}
-	public class PassingBag
-	{
-		public CaseRecord CaseRecord { get; set; }
-		public Paralegal Paralegal { get; set; }
-
-		public Lawyer Lawyer { get; set; }
-		public SqlDB Db { get; set; }
-		public Client Client { get; set; }
-		public Case _case { get; set; }
-		public PassingBag(Lawyer lawyer, SqlDB db)
-		{
-			this.Lawyer = lawyer;
-			this.Db = db;
-		}
-		public PassingBag(Client client)
-		{
-			this.Client = client;
-		}
-		public PassingBag(Case _case)
-		{
-			this._case = _case;
-		}
-
-		public PassingBag(CaseRecord caseRecord, Paralegal paralegal)
-		{
-			this.CaseRecord = caseRecord;
-			this.Paralegal = paralegal;
-		}
-	}
+	
 }

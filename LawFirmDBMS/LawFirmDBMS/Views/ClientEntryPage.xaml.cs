@@ -28,13 +28,23 @@ namespace LawFirmDBMS.Views
         }
 		Client client = new Client();
 		SqlDB db = new SqlDB();
+		Lawyer lawyer = new Lawyer();
+		PassingBag passingBag;
 		private void SubmitClick(object sender, RoutedEventArgs e)
 		{
-			client.ClientID = Convert.ToInt32(clientID.Text);
 			client.FullName = clientName.Text;
 			client.Phone = clientPhone.Text;
 			db.InsertIntoClient(client);
-
+			Frame.Navigate(typeof(ClientDisplayPage), passingBag);
+		}
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+			passingBag = (PassingBag)e.Parameter;
+			//if (e.Parameter.GetType() == typeof(Lawyer))
+			//{
+			//	passingBag = new PassingBag(lawyer);
+			//}
 		}
 		// TODO: Add check for phone number validation
 		// TODO: Add an upload picture bitton to take in a picture of the client 

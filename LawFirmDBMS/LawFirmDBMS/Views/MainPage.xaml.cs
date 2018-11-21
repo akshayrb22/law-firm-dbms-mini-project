@@ -4,13 +4,14 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
+using Template10.Services.NavigationService;
 
 namespace LawFirmDBMS.Views
 {
 	public sealed partial class MainPage : Page
 	{
-		Frame frame = Window.Current.Content as Frame;
-		
+
+		//private NavigationService navServ = this.GetNavigationService();/* = new NavigationService();*/
 		public MainPage()
 		{
 			InitializeComponent();
@@ -18,34 +19,14 @@ namespace LawFirmDBMS.Views
 			
 		}
 
-		private void CaseEntryLinkClick(object sender, RoutedEventArgs e)
+		private void SignUpButtonClick(object sender, RoutedEventArgs e)
 		{
-			frame = new Frame();
-			frame.Navigate(typeof(CaseEntryPage));
+			Frame.Navigate(typeof(LawyerEntryPage));
 		}
 
-		private void ClientEntryLinkClick(object sender, RoutedEventArgs e)
+		private void LogInButtonClick(object sender, RoutedEventArgs e)
 		{
-			frame = new Frame();
-			frame.Navigate(typeof(ClientEntryPage));
-		}
-
-		private void LawyerUpdateLinkClick(object sender, RoutedEventArgs e)
-		{
-			frame = new Frame();
-			frame.Navigate(typeof(LawyerViewPage), 1);
-		}
-
-		private void ClientUpdateClick(object sender, RoutedEventArgs e)
-		{
-			frame = new Frame();
-			frame.Navigate(typeof(ClientUpdatePage));
-		}
-
-		private void CaseUpdateLinkClick(object sender, RoutedEventArgs e)
-		{
-			frame = new Frame();
-			frame.Navigate(typeof(CaseUpdatePage));
+			Frame.Navigate(typeof(LoginPage));
 		}
 	}
 }

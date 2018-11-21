@@ -13,6 +13,8 @@ namespace LawFirmDBMS
 		const string path = "server=127.0.0.1;user id=root;password=root;database=law_firm";
 		MySqlConnection connection = new MySqlConnection(path);
 
+		
+
 		public void InsertIntoLawyer(Lawyer lawyer)
         {
 			try
@@ -48,15 +50,18 @@ namespace LawFirmDBMS
 				MySqlDataReader getLawyer = command.ExecuteReader();
 				if (getLawyer.HasRows)
 				{
-					lawyer = new Lawyer
+					while (getLawyer.Read())
 					{
-						LawyerID = getLawyer.GetInt32(0),
-						FullName = getLawyer.GetString(1),
-						Designation = getLawyer.GetString(2),
-						Billables = getLawyer.GetInt32(3),
-						Phone = getLawyer.GetString(4),
-						Password = getLawyer.GetString(5)
-					};
+						lawyer = new Lawyer
+						{
+							LawyerID = getLawyer.GetInt32(0),
+							FullName = getLawyer.GetString(1),
+							Designation = getLawyer.GetString(2),
+							Billables = getLawyer.GetInt32(3),
+							Phone = getLawyer.GetString(4),
+							Password = getLawyer.GetString(5)
+						};
+					}
 				}
 				getLawyer.Close();
 				return lawyer;
@@ -318,6 +323,35 @@ namespace LawFirmDBMS
 
 		}
 
+		public List<MixedBag> GetDocDetails()
+		{
+			List<string> namesList = new List<string>();
+			List<MixedBag> mixedBagList = new List<MixedBag>();
+			MySqlCommand retrieveDocDetails = new MySqlCommand("DOC_DETAILS", connection)
+			{
+				CommandType = System.Data.CommandType.StoredProcedure
+			};
+			connection.Open();
+			MySqlDataReader details = retrieveDocDetails.ExecuteReader();
+			if (details.HasRows)
+			{
+				while (details.Read())
+				{
+					MixedBag mixedBag = new MixedBag
+					{
+						ParalegalName = details.GetString(0),
+						DocID = details.GetInt32(1),
+						PID = details.GetInt32(2),
+						CaseID = details.GetInt32(3)
+					};
+					mixedBagList.Add(mixedBag);
+				}
+			}
+			details.Close();
+			return mixedBagList;
+		}
+		
+
 
 	}
 
@@ -334,6 +368,7 @@ namespace LawFirmDBMS
 		public string Password { get; set; }
 
 		public int Billables { get; set; }
+
 	}
 
 	public class Client
@@ -378,5 +413,54 @@ namespace LawFirmDBMS
 		public int PID { get; set; }
 	}
 
+	public class PassingBag
+	{
+		public bool LoggedIn { get; set; }
 
+		public CaseRecord CaseRecord { get; set; }
+		public Paralegal Paralegal { get; set; }
+
+		public Lawyer Lawyer { get; set; }
+		public SqlDB Db { get; set; }
+		public Client Client { get; set; }
+		public Case _case { get; set; }
+		public PassingBag(Lawyer lawyer, SqlDB db)
+		{
+			this.Lawyer = lawyer;
+			this.Db = db;
+		}
+		public PassingBag(Client client)
+		{
+			this.Client = client;
+		}
+		public PassingBag(Case _case)
+		{
+			this._case = _case;
+		}
+
+		public PassingBag(CaseRecord caseRecord, Paralegal paralegal)
+		{
+			this.CaseRecord = caseRecord;
+			this.Paralegal = paralegal;
+		}
+
+		public PassingBag(Lawyer lawyer)
+		{
+			Lawyer = lawyer;
+		}
+
+		public PassingBag(Lawyer lawyer, bool loggedIn)
+		{
+			this.Lawyer = lawyer;
+			this.LoggedIn = loggedIn;
+		}
+	}
+
+	public class MixedBag
+	{
+		public int DocID { get; set; }
+		public int CaseID { get; set; }
+		public int PID { get; set; }
+		public string ParalegalName { get; set; }
+	}
 }

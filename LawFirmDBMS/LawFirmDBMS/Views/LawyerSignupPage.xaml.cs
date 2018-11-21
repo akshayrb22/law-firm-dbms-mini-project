@@ -46,13 +46,10 @@ namespace LawFirmDBMS.Views
 			lawyer.Designation = designation.SelectedItem.ToString();
 			db.InsertIntoLawyer(lawyer);
 			PassingBag passingBag = new PassingBag(lawyer, db);
-			string serializedObject = Newtonsoft.Json.JsonConvert.SerializeObject(passingBag);
 			try
 			{
-				//Frame.Navigate(typeof(Views.MainPage), serializedObject);
-				frame = new Frame();
-				frame.Navigate(typeof(Views.LawyerViewPage), passingBag);
-				//GotoLawyerViewPage(serializedObject);
+				Frame.Navigate(typeof(Views.MainPage), passingBag);
+				
 			}
 			catch (Exception ex)
 			{
@@ -60,10 +57,7 @@ namespace LawFirmDBMS.Views
 				throw;
 			}
 		}
-		//public void GotoLawyerViewPage(string serializedObject)
-		//{
-		//	navServ.Navigate(typeof(Views.LawyerViewPage), serializedObject);
-		//}
+		
 	}
 	
 }

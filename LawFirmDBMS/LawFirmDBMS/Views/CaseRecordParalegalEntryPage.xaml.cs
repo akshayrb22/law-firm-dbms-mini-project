@@ -42,8 +42,7 @@ namespace LawFirmDBMS.Views
 			db.InsertIntoCaseRecords(caseRecord);
 			db.InsertIntoParalegal(paralegal);
 			PassingBag passingBag = new PassingBag(caseRecord, paralegal);
-			frame = new Frame();
-			frame.Navigate(typeof(Views.CaseRecordParalegalDisplayPage), passingBag);
+			Frame.Navigate(typeof(Views.CaseRecordParalegalDisplayPage), passingBag);
 		}
 	}
 }

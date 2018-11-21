@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,19 +26,40 @@ namespace LawFirmDBMS.Views
 		public CaseRecordParalegalDisplayPage()
 		{
 			this.InitializeComponent();
+
 		}
 		CaseRecord caseRecord = new CaseRecord();
 		Paralegal paralegal = new Paralegal();
 		Frame frame = Window.Current.Content as Frame;
+		SqlDB db = new SqlDB();
+		public List<CaseRecord> caseRecordList { get; set; }
+
+		public List<Paralegal> paralegalList { get; private set; }
+		public List<MixedBag> mixedBagList { get; set; }
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
-			PassingBag passingBag = (PassingBag)e.Parameter;
-			caseRecord = passingBag.CaseRecord;
-			paralegal = passingBag.Paralegal;
+			try
+			{
+				if (e.Parameter.GetType() == typeof(PassingBag))
+				{
+					PassingBag passingBag = (PassingBag)e.Parameter;
+					caseRecord = passingBag.CaseRecord;
+					paralegal = passingBag.Paralegal;
+				}
+			}
+			catch (NullReferenceException nre)
+			{
+				Debug.WriteLine(nre);
+				if (e.Parameter is null)
+				{
+					mixedBagList = db.GetDocDetails();
+
+				}
+			}
+			
+			
 		}
-
-
 	}
 }

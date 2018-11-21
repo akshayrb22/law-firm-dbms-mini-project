@@ -25,6 +25,14 @@ namespace LawFirmDBMS.Views
         public CaseViewUpdatePage()
         {
             this.InitializeComponent();
+			caseList = db.GetCases();
         }
-    }
+		List<Case> caseList = new List<Case>();
+		SqlDB db = new SqlDB();
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+			
+		}
+	}
 }

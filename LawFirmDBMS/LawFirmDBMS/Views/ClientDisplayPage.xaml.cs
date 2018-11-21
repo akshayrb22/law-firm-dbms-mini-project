@@ -25,6 +25,17 @@ namespace LawFirmDBMS.Views
 		public ClientDisplayPage()
 		{
 			this.InitializeComponent();
+			clientList = db.GetClients();
 		}
+		SqlDB db = new SqlDB();
+		List<Client> clientList = new List<Client>();
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+			// TODO: Deal with the navigation part after doing the display and update tables part.
+			
+		}
+
+		
 	}
 }

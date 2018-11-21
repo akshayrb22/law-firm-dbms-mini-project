@@ -36,21 +36,12 @@
 				 Header="Client Name*">
 
 		</TextBox>
-
 		<TextBox Height="60" Margin="80,260,0,0" 
-				 HorizontalAlignment="Left" 
-				 Width="400" 
-				 VerticalAlignment="Top"
-				 Name="clientID"
-				 Header="Client ID*">
-
-		</TextBox>
-		<TextBox Height="60" Margin="80,420,0,0" 
-	  HorizontalAlignment="Left" 
-	  Width="400" 
-	  VerticalAlignment="Top"
-	  x:Name="clientPhone"
-	  Header="Phone*"/>
-		<Button x:Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="80,608,0,-311" VerticalAlignment="Stretch" Width="120" Click="SubmitClick"/>
+				  HorizontalAlignment="Left" 
+				  Width="400" 
+				  VerticalAlignment="Top"
+				  x:Name="clientPhone"
+				  Header="Phone*"/>
+		<Button x:Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="80,448,0,-151" VerticalAlignment="Stretch" Width="120" Click="SubmitClick"/>
 	</RelativePanel>
 </Page>

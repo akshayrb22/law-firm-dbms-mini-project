@@ -27,7 +27,7 @@
 			</controls:PageHeader.SecondaryCommands>
 
 		</controls:PageHeader>
-		<TextBlock x:Name="name" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.FullName}" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160" Margin="80,0,0,-240"/>
+		<TextBlock x:Name="name" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.FullName}" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160" Margin="80,0,0,-240" />
 		<TextBlock x:Name="designation" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.Designation}" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160" Margin="480,0,0,-240"/>
 		<TextBlock x:Name="billables" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.Billables}" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Margin="80,440,0,0"/>
 		<TextBlock x:Name="phone" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.Phone}" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Margin="480,440,0,0"/>

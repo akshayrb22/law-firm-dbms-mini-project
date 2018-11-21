@@ -44,7 +44,10 @@ namespace LawFirmDBMS.ViewModels
 			args.Cancel = false;
 			await Task.CompletedTask;
 		}
-
+		public void OnNavigatedTo(NavigationEventArgs e)
+		{
+			NavigationService navServ = (NavigationService)e.Parameter;
+		}
 		public void GotoDetailsPage() =>
 			NavigationService.Navigate(typeof(Views.DetailPage), Value);
 

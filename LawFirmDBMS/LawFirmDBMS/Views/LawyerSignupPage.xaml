@@ -60,7 +60,7 @@
 
 		<Button x:Name="submitButton"
                 Content="Submit"
-                Margin="679,498,0,-388" 
-				VerticalAlignment="Stretch" Width="96" Click="SubmitButtonClick" HorizontalAlignment="Left"/>
+                Margin="361,500,0,0" 
+				VerticalAlignment="Top" Width="200" Click="SubmitButtonClick" HorizontalAlignment="Left" Height="32"/>
 	</RelativePanel>
 </Page>

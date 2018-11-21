@@ -26,18 +26,7 @@
                                Text="Home" />
 				</StackPanel>
 			</Controls:HamburgerButtonInfo>
-			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:LawyerEntryPage">
-				<StackPanel Orientation="Horizontal">
-					<SymbolIcon Width="48"
-								Height="48"
-								Symbol="Edit"/>
-					<TextBlock Margin="12,0,0,0"
-                               VerticalAlignment="Center"
-                               Text="Enter Lawyer Details" />
-				</StackPanel>
-			</Controls:HamburgerButtonInfo>
-
-			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:ClientEntryPage" PageParameter="4">
+			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:ClientEntryPage">
 				<StackPanel Orientation="Horizontal">
 					<SymbolIcon Width="48"
 								Height="48"
@@ -47,18 +36,7 @@
                                Text="Enter Client Details" />
 				</StackPanel>
 			</Controls:HamburgerButtonInfo>
-
-			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:CaseEntryPage" PageParameter="5">
-				<StackPanel Orientation="Horizontal">
-					<SymbolIcon Width="48"
-								Height="48"
-								Symbol="Bullets"/>
-					<TextBlock Margin="12,0,0,0"
-                               VerticalAlignment="Center"
-                               Text="Enter Case Details" />
-				</StackPanel>
-			</Controls:HamburgerButtonInfo>
-			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:ClientDisplayPage" PageParameter="5">
+			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:ClientDisplayPage">
 				<StackPanel Orientation="Horizontal">
 					<SymbolIcon Width="48"
 								Height="48"
@@ -68,7 +46,51 @@
                                Text="Display Client Details" />
 				</StackPanel>
 			</Controls:HamburgerButtonInfo>
+
+			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:CaseEntryPage">
+				<StackPanel Orientation="Horizontal">
+					<SymbolIcon Width="48"
+								Height="48"
+								Symbol="Bullets"/>
+					<TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Enter Case Details" />
+				</StackPanel>
+			</Controls:HamburgerButtonInfo>
+			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:CaseViewUpdatePage">
+				<StackPanel Orientation="Horizontal">
+					<SymbolIcon Width="48"
+								Height="48"
+								Symbol="Bullets"/>
+					<TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Display Case Details" />
+				</StackPanel>
+			</Controls:HamburgerButtonInfo>
+			
+			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:CaseRecordParalegalEntryPage">
+				<StackPanel Orientation="Horizontal">
+					<SymbolIcon Width="48"
+								Height="48"
+								Symbol="Contact2"/>
+					<TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Enter Case Records" />
+				</StackPanel>
+			</Controls:HamburgerButtonInfo>
+			<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:CaseRecordParalegalDisplayPage">
+				<StackPanel Orientation="Horizontal">
+					<SymbolIcon Width="48"
+								Height="48"
+								Symbol="ProtectedDocument"/>
+					<TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Display Case Records" />
+				</StackPanel>
+			</Controls:HamburgerButtonInfo>
+			
 		</Controls:HamburgerMenu.PrimaryButtons>
+		
 
         <Controls:HamburgerMenu.SecondaryButtons>
             <!--  profile button  -->

@@ -28,11 +28,11 @@
 			</controls:PageHeader.SecondaryCommands>
 
 		</controls:PageHeader>
-		<TextBox x:Name="p_id" HorizontalAlignment="Left" Height="52" Text="" VerticalAlignment="Top" Width="140" Margin="80,128,0,0" Header="Paralegal ID"/>
-		<TextBox x:Name="phone" HorizontalAlignment="Left" Height="52" Text="" VerticalAlignment="Top" Width="140" Margin="320,128,0,0" Header="Phone"/>
-		<TextBox x:Name="doc_id" HorizontalAlignment="Left" Height="52" Text="" VerticalAlignment="Top" Width="140" Margin="560,128,0,0" Header="Document ID"/>
-		<TextBox x:Name="case_id" HorizontalAlignment="Left" Height="52" Text="" VerticalAlignment="Top" Width="140" Margin="80,291,0,0" Header="Case ID"/>
-		<TextBox x:Name="name" HorizontalAlignment="Left" Height="52" Text="" VerticalAlignment="Top" Width="140" Margin="320,291,0,0" Header="Name"/>
-		<Button x:Name="submit" Content="Submit" HorizontalAlignment="Left" Height="52" VerticalAlignment="Top" Width="140" Margin="560,291,0,0" Click="SubmitClick"/>
+		<TextBox x:Name="p_id" HorizontalAlignment="Left" Height="70" Text="" VerticalAlignment="Top" Width="180" Margin="80,128,0,0" Header="Paralegal ID"/>
+		<TextBox x:Name="phone" HorizontalAlignment="Left" Height="70" Text="" VerticalAlignment="Top" Width="180" Margin="437,128,0,0" Header="Phone"/>
+		<TextBox x:Name="doc_id" HorizontalAlignment="Left" Height="70" Text="" VerticalAlignment="Top" Width="180" Margin="789,128,0,0" Header="Document ID"/>
+		<TextBox x:Name="case_id" HorizontalAlignment="Left" Height="70" Text="" VerticalAlignment="Top" Width="180" Margin="80,350,0,0" Header="Case ID"/>
+		<TextBox x:Name="name" HorizontalAlignment="Left" Height="70" Text="" VerticalAlignment="Top" Width="180" Margin="437,350,0,0" Header="Name"/>
+		<Button x:Name="submit" Content="Submit" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="180" Margin="789,380,0,0" Click="SubmitClick"/>
 	</RelativePanel>
 </Page>

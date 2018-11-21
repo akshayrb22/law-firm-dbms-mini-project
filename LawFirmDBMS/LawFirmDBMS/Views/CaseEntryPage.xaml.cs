@@ -44,13 +44,18 @@ namespace LawFirmDBMS.Views
 			Frame frame = Window.Current.Content as Frame;
 			try
 			{
-				frame.Navigate(typeof(Views.CaseViewUpdatePage), passingBag);
+				Frame.Navigate(typeof(Views.CaseViewUpdatePage), passingBag);
 			}
 			catch (Exception ex)
 			{
 				Debug.WriteLine("Exception:" + ex.ToString());
 				throw;
 			}
+		}
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+			Debug.WriteLine("Entered Case Entry Page.");
 		}
 	}
 }

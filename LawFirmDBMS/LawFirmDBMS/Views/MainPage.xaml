@@ -8,7 +8,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:LawFirmDBMS.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:vm="using:LawFirmDBMS.ViewModels" mc:Ignorable="d">
+      xmlns:vm="using:LawFirmDBMS.ViewModels" 
+	  mc:Ignorable="d">
 
 	<Page.DataContext>
 		<vm:MainPageViewModel x:Name="ViewModel" />
@@ -61,11 +62,8 @@
 			</controls:PageHeader.SecondaryCommands>
 
 		</controls:PageHeader>
-		<Button x:Name="caseEntryLink" Content="Enter Cases" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="200" Margin="50,116,0,0" Click="CaseEntryLinkClick"/>
-		<Button x:Name="clientEntryLink" Content="Enter Clients" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="200" Margin="491,110,0,0" Click="ClientEntryLinkClick"/>
-		<Button x:Name="caseUpdateLink" Content="Update Cases" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="200" Margin="491,465,0,0" Click="CaseUpdateLinkClick"/>
-		<Button x:Name="clientUpdate" Content="Update Client" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="200" Margin="50,465,0,0" Click="ClientUpdateClick"/>
-		<Button x:Name="lawyerUpdateLink" Content="Update profile details" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="240" Margin="250,270,0,0" Click="LawyerUpdateLinkClick"/>
+		<Button x:Name="logInButton" Content="Log In" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="160" Margin="325,400,0,0" Click="LogInButtonClick"/>
+		<Button x:Name="signUpButton" Content="Sign Up" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="160" Margin="645,400,0,0" Click="SignUpButtonClick"/>
 
 	</RelativePanel>
 </Page>

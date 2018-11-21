@@ -1,5 +1,4 @@
 ﻿<Page
-    x:Class="LawFirmDBMS.Views.ClientDisplayPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LawFirmDBMS.Views"
@@ -7,24 +6,52 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:vm="using:LawFirmDBMS.ViewModels"
 	xmlns:controls="using:Template10.Controls"
+	xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    x:Class="LawFirmDBMS.Views.ClientDisplayPage"
 	mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Page.DataContext>
 		<vm:ClientDisplayPageViewModel x:Name="ViewModel" />
 	</Page.DataContext>
-	<RelativePanel HorizontalAlignment="Center" Height="1000" Margin="0,0,0,0" VerticalAlignment="Center" Width="1500">
+	<RelativePanel HorizontalAlignment="Right" Height="1000" VerticalAlignment="Center" Width="1500">
 		<controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
-                             RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="Client Display Page">
+			RelativePanel.AlignRightWithPanel="True"
+			RelativePanel.AlignTopWithPanel="True" Text="Client Display Page" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Center">
 
 
 			<!--  secondary commands  -->
 			<controls:PageHeader.SecondaryCommands>
-				<AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
-				<AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
-				<AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
+				<AppBarButton Click="{x:Bind Path=ViewModel.GotoSettings}" Label="Settings" />
+				<AppBarButton Click="{x:Bind Path=ViewModel.GotoPrivacy}" Label="Privacy" />
+				<AppBarButton Click="{x:Bind Path=ViewModel.GotoAbout}" Label="About" />
 			</controls:PageHeader.SecondaryCommands>
 
 		</controls:PageHeader>
+
+		<Custom:DataGrid HorizontalAlignment="Right" Width="1490" 
+						 Margin="0,48,-1500,-956" x:Name="clientDataGrid"
+						 AutoGenerateColumns="False" ItemsSource="{x:Bind clientList}" VerticalAlignment="Stretch">
+			<Custom:DataGrid.Columns>
+				<Custom:DataGridTextColumn
+					Header="ID"
+					Width="SizeToHeader"
+					Binding="{Binding ClientID}"
+					FontSize="20"
+					/>
+				<Custom:DataGridTextColumn
+					Header="Name"
+					Width="SizeToHeader"
+					Binding="{Binding FullName}"
+					FontSize="20"
+					/>
+				<Custom:DataGridTextColumn
+					Header="Phone"
+					Width="SizeToHeader"
+					Binding="{Binding Phone}"
+					FontSize="20"
+					/>
+			</Custom:DataGrid.Columns>
+		</Custom:DataGrid>
+		<Custom:DataGrid HorizontalAlignment="Center" Height="1" VerticalAlignment="Center" Width="0"/>
 	</RelativePanel>
 </Page>

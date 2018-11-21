@@ -27,29 +27,21 @@ namespace LawFirmDBMS.Views
 		//Lawyer lawyer = new Lawyer();
 		//SqlDB db = new SqlDB();
 		public SqlDB Db { get; set; }
-		public List<Lawyer> Lawyers { get; set; }
 		public LawyerViewPage()
         {
             this.InitializeComponent();
-			Debug.WriteLine("Reached here as well");
-			this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+			Debug.WriteLine("Reached Lawyer Display page.");
 		}
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
+			// Unless we get a PassingBag object with a Lawyer and loggedIn variable, don't allow to enter.
 			try
 			{
-				var v = e.Parameter.GetType() == typeof(PassingBag);
-				if (v)
+				PassingBag passingBag = (PassingBag)e.Parameter;
+				if (passingBag.LoggedIn)
 				{
-					PassingBag passingBag = (PassingBag)e.Parameter;
-					Db = passingBag.Db;
 					Lawyer = passingBag.Lawyer;
-				}
-				else if (LoginPage.loggedIn == true)
-				{
-					//Lawyer = Db.GetLawyer();
-					// TODO: Send the current lawyer data to the memory to access it anytime
 				}
 			}
 			catch (NullReferenceException nre)
@@ -57,7 +49,11 @@ namespace LawFirmDBMS.Views
 
 				Debug.WriteLine(nre);
 				throw;
-			}			
+			}
+			catch (Exception ex)			
+			{
+				Debug.WriteLine(ex);
+			}
 			//lawyer = db.GetLawyer(passingBag.lawyer.Password, passingBag.lawyer.Phone);
 		}
     }
