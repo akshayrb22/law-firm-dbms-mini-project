@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace LawFirmDBMS
 {
@@ -12,8 +13,6 @@ namespace LawFirmDBMS
     {
 		const string path = "server=127.0.0.1;user id=root;password=root;database=law_firm";
 		MySqlConnection connection = new MySqlConnection(path);
-
-		
 
 		public void InsertIntoLawyer(Lawyer lawyer)
         {
@@ -94,9 +93,9 @@ namespace LawFirmDBMS
 				Debug.WriteLine(e);
 			}
 		}
-		public List<Case> GetCases()
+		public ObservableCollection<Case> GetCases()
 		{
-			List<Case> caseList = new List<Case>();
+			ObservableCollection<Case> caseList = new ObservableCollection<Case>();
 			string getCases = "SELECT * FROM CASES;";
 			connection.Open();
 			MySqlCommand command = new MySqlCommand(getCases, connection);
@@ -108,14 +107,13 @@ namespace LawFirmDBMS
 					Case _case = new Case
 					{
 						CaseID = cases.GetInt32(0),
-						Title = cases.GetString(1),
-						Status = cases.GetString(2),
-						HoursBilled = cases.GetInt32(3),
-						ClientID = cases.GetInt32(4),
-						CourtroomNumber = cases.GetString(5)
+						Status = cases.GetString(1),
+						HoursBilled = cases.GetInt32(2),
+						ClientID = cases.GetInt32(3),
+						CourtroomNumber = cases.GetString(4), 
+						Title = cases.GetString(5)
 					};
 					caseList.Add(_case);
-					cases.NextResult();
 				}
 			}
 			cases.Close();
@@ -130,6 +128,29 @@ namespace LawFirmDBMS
 				delete.Parameters.AddWithValue("@case_id", caseID);
 				connection.Open();
 				delete.ExecuteNonQuery();
+				connection.Close();
+			}
+			catch (Exception e)
+			{
+				Debug.WriteLine(e);
+				throw;
+			}
+		}
+		public void UpdateCases(Case _case)
+		{
+			try
+			{
+				string caseUpdate = "UPDATE CASES SET STATUS = @status, HOURS_BILLED = " +
+					"@hours_billed, CL_ID = @cl_id, COURTROOM_NUMBER = @courtroom_number WHERE" +
+					"CASE_ID = @case_id;";
+				MySqlCommand update = new MySqlCommand(caseUpdate, connection);
+				update.Parameters.AddWithValue("@status", _case.Status);
+				update.Parameters.AddWithValue("@hours_billed", _case.HoursBilled);
+				update.Parameters.AddWithValue("@cl_id", _case.ClientID);
+				update.Parameters.AddWithValue("@courtroom_number", _case.CourtroomNumber);
+				update.Parameters.AddWithValue("@case_id", _case.CaseID);
+				connection.Open();
+				update.ExecuteNonQuery();
 				connection.Close();
 			}
 			catch (Exception e)
@@ -157,9 +178,9 @@ namespace LawFirmDBMS
 				Debug.WriteLine(e);
 			}
 		}
-		public List<Client> GetClients()
+		public ObservableCollection<Client> GetClients()
 		{
-			List<Client> clientList = new List<Client>();
+			ObservableCollection<Client> clientList = new ObservableCollection<Client>();
 			string getClients = "SELECT * FROM CLIENT;";
 			connection.Open();
 			MySqlCommand command = new MySqlCommand(getClients, connection);
@@ -199,6 +220,25 @@ namespace LawFirmDBMS
 				throw;
 			}
 		}
+		public void UpdateClients(Client client)
+		{
+			try
+			{
+				string clientUpdate = "UPDATE CLIENT SET NAME = @name, PHONE = @phone WHERE CL_ID = @cl_id;";
+				MySqlCommand update = new MySqlCommand(clientUpdate, connection);
+				update.Parameters.AddWithValue("@name", client.FullName);
+				update.Parameters.AddWithValue("@phone", client.Phone);
+				update.Parameters.AddWithValue("@cl_id", client.ClientID);
+				connection.Open();
+				update.ExecuteNonQuery();
+				connection.Close();
+			}
+			catch (Exception e)
+			{
+				Debug.WriteLine(e);
+				throw;
+			}
+		}
 
 		public void InsertIntoParalegal(Paralegal paralegal)
 		{
@@ -219,9 +259,9 @@ namespace LawFirmDBMS
 				throw;
 			}
 		}
-		public List<Paralegal> GetParalegals()
+		public ObservableCollection<Paralegal> GetParalegals()
 		{
-			List<Paralegal> paralegalList = new List<Paralegal>();
+			ObservableCollection<Paralegal> paralegalList = new ObservableCollection<Paralegal>();
 			string getParalegals = "SELECT * FROM PARALEGALS;";
 			connection.Open();
 			MySqlCommand command = new MySqlCommand(getParalegals, connection);
@@ -261,6 +301,25 @@ namespace LawFirmDBMS
 			}
 			
 		}
+		public void UpdateParalegals(Paralegal paralegal)
+		{
+			try
+			{
+				string paralegalUpdate = "UPDATE PARALEGALS SET PHONE = @phone, NAME = @name WHERE P_ID = @p_id;";
+				MySqlCommand update = new MySqlCommand(paralegalUpdate, connection);
+				update.Parameters.AddWithValue("@name", paralegal.FullName);
+				update.Parameters.AddWithValue("@phone", paralegal.Phone);
+				update.Parameters.AddWithValue("@p_id", paralegal.PID);
+				connection.Open();
+				update.ExecuteNonQuery();
+				connection.Close();
+			}
+			catch (Exception e)
+			{
+				Debug.WriteLine(e);
+				throw;
+			}
+		}
 
 		public void InsertIntoCaseRecords(CaseRecord caseRecord)
 		{
@@ -281,9 +340,9 @@ namespace LawFirmDBMS
 				throw;
 			}
 		}
-		public List<CaseRecord> GetCaseRecords()
+		public ObservableCollection<CaseRecord> GetCaseRecords()
 		{
-			List<CaseRecord> recordsList = new List<CaseRecord>();
+			ObservableCollection<CaseRecord> recordsList = new ObservableCollection<CaseRecord>();
 			string getRecords = "SELECT * FROM CASE_RECORDS;";
 			connection.Open();
 			MySqlCommand command = new MySqlCommand(getRecords, connection);
@@ -322,11 +381,30 @@ namespace LawFirmDBMS
 			}
 
 		}
+		public void UpdateCaseRecord(CaseRecord caseRecord)
+		{
+			try
+			{
+				string caseRecordUpdate = "UPDATE CASE_RECORD SET CASE_ID = @case_id, P_ID = @p_id WHERE DOC_ID = @doc_id;";
+				MySqlCommand update = new MySqlCommand(caseRecordUpdate, connection);
+				update.Parameters.AddWithValue("@case_id", caseRecord.CaseID);
+				update.Parameters.AddWithValue("@p_id", caseRecord.PID);
+				update.Parameters.AddWithValue("@doc_id", caseRecord.DocID);
+				connection.Open();
+				update.ExecuteNonQuery();
+				connection.Close();
+			}
+			catch (Exception e)
+			{
+				Debug.WriteLine(e);
+				throw;
+			}
+		}
 
-		public List<MixedBag> GetDocDetails()
+		public ObservableCollection<MixedBag> GetDocDetails()
 		{
 			List<string> namesList = new List<string>();
-			List<MixedBag> mixedBagList = new List<MixedBag>();
+			ObservableCollection<MixedBag> mixedBagList = new ObservableCollection<MixedBag>();
 			MySqlCommand retrieveDocDetails = new MySqlCommand("DOC_DETAILS", connection)
 			{
 				CommandType = System.Data.CommandType.StoredProcedure
@@ -350,9 +428,6 @@ namespace LawFirmDBMS
 			details.Close();
 			return mixedBagList;
 		}
-		
-
-
 	}
 
 	public class Lawyer
@@ -418,21 +493,28 @@ namespace LawFirmDBMS
 		public bool LoggedIn { get; set; }
 
 		public CaseRecord CaseRecord { get; set; }
+
 		public Paralegal Paralegal { get; set; }
 
 		public Lawyer Lawyer { get; set; }
+
 		public SqlDB Db { get; set; }
+
 		public Client Client { get; set; }
+
 		public Case _case { get; set; }
+
 		public PassingBag(Lawyer lawyer, SqlDB db)
 		{
 			this.Lawyer = lawyer;
 			this.Db = db;
 		}
+
 		public PassingBag(Client client)
 		{
 			this.Client = client;
 		}
+
 		public PassingBag(Case _case)
 		{
 			this._case = _case;

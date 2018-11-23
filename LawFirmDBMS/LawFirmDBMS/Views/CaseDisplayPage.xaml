@@ -19,8 +19,11 @@
 		<controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
 			RelativePanel.AlignRightWithPanel="True"
 			RelativePanel.AlignTopWithPanel="True" Text="Case Display Page" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Center">
-
-
+ 
+			<controls:PageHeader.PrimaryCommands>
+				<AppBarButton Click="SaveButtonClick" Label="Save" Icon="Save"/>
+				<AppBarButton Click="DeleteButtonClick" Label="Delete" Icon="Delete"/>
+			</controls:PageHeader.PrimaryCommands>
 			<!--  secondary commands  -->
 			<controls:PageHeader.SecondaryCommands>
 				<AppBarButton Click="{x:Bind Path=ViewModel.GotoSettings}" Label="Settings" />
@@ -30,43 +33,44 @@
 
 		</controls:PageHeader>
 
-		<Custom:DataGrid HorizontalAlignment="Right" Width="1490" 
+		<Custom:DataGrid HorizontalAlignment="Right" Width="1500" 
 			Margin="0,48,-1500,-914" x:Name="clientDataGrid"
-			AutoGenerateColumns="False" ItemsSource="{x:Bind Path=caseList}">
+			AutoGenerateColumns="False" ItemsSource="{x:Bind Path=caseList}" VerticalAlignment="Stretch" AlternatingRowBackground="DarkGray"
+			GridLinesVisibility="All" >
 			<Custom:DataGrid.Columns>
 				<Custom:DataGridTextColumn
 					Header="Case ID"
-					Width="SizeToHeader"
+					Width="Auto"
 					Binding="{Binding CaseID}"
 					FontSize="20"
 					/>
 				<Custom:DataGridTextColumn
 					Header="Title"
-					Width="SizeToHeader"
+					Width="Auto"
 					Binding="{Binding Title}"
 					FontSize="20"
 					/>
 				<Custom:DataGridTextColumn
 					Header="Hours Billed"
-					Width="SizeToHeader"
+					Width="Auto"
 					Binding="{Binding HoursBilled}"
 					FontSize="20"
 					/>
 				<Custom:DataGridTextColumn
 					Header="Client ID"
-					Width="SizeToHeader"
+					Width="Auto"
 					Binding="{Binding ClientID}"
 					FontSize="20"
 					/>
 				<Custom:DataGridTextColumn
 					Header="Status"
-					Width="SizeToHeader"
+					Width="Auto"
 					Binding="{Binding Status}"
 					FontSize="20"
 					/>
 				<Custom:DataGridTextColumn
 					Header="Courtroom Number"
-					Width="SizeToHeader"
+					Width="Auto"
 					Binding="{Binding CourtroomNumber}"
 					FontSize="20"
 					/>

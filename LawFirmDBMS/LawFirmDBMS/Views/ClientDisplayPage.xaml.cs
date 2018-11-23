@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -17,25 +18,30 @@ using Windows.UI.Xaml.Navigation;
 
 namespace LawFirmDBMS.Views
 {
-	/// <summary>
-	/// An empty page that can be used on its own or navigated to within a Frame.
-	/// </summary>
-	public sealed partial class ClientDisplayPage : Page
-	{
-		public ClientDisplayPage()
-		{
-			this.InitializeComponent();
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class ClientDisplayPage : Page
+    {
+        public ClientDisplayPage()
+        {
+            this.InitializeComponent();
 			clientList = db.GetClients();
-		}
+        }
 		SqlDB db = new SqlDB();
-		List<Client> clientList = new List<Client>();
+		ObservableCollection<Client> clientList = new ObservableCollection<Client>();
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
-			// TODO: Deal with the navigation part after doing the display and update tables part.
-			
+		}
+		private void SaveButtonClick(object sender, RoutedEventArgs e)
+		{
+			clientDataGrid.CommitEdit();
 		}
 
-		
+		private void DeleteButtonClick(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }

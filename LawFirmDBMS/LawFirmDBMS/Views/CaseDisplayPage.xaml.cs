@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -27,12 +28,21 @@ namespace LawFirmDBMS.Views
             this.InitializeComponent();
 			caseList = db.GetCases();
         }
-		List<Case> caseList = new List<Case>();
+		ObservableCollection<Case> caseList = new ObservableCollection<Case>();
 		SqlDB db = new SqlDB();
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
 			
+		}
+
+		private void SaveButtonClick(object sender, RoutedEventArgs e)
+		{
+			
+		}
+		private void DeleteButtonClick(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace LawFirmDBMS.Views
 		Paralegal paralegal = new Paralegal();
 		Frame frame = Window.Current.Content as Frame;
 		SqlDB db = new SqlDB();
-		public List<CaseRecord> caseRecordList { get; set; }
+		public ObservableCollection<CaseRecord> caseRecordList { get; set; }
 
-		public List<Paralegal> paralegalList { get; private set; }
-		public List<MixedBag> mixedBagList { get; set; }
+		public ObservableCollection<Paralegal> paralegalList { get; private set; }
+		public ObservableCollection<MixedBag> mixedBagList { get; set; }
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
@@ -60,6 +61,21 @@ namespace LawFirmDBMS.Views
 			}
 			
 			
+		}
+
+		private void SaveButtonClick(object sender, RoutedEventArgs e)
+		{
+			CaseRecord updatedCaseRecord = new CaseRecord();
+			clientDataGrid.CommitEdit();
+			//clientDataGrid.
+
+			
+			//db.UpdateCaseRecord(updatedCaseRecord);
+		}
+
+		private void DeleteButtonClick(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

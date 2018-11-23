@@ -21,6 +21,10 @@
 			RelativePanel.AlignRightWithPanel="True"
 			RelativePanel.AlignTopWithPanel="True" Text="Case Record Display" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top">
 
+			<controls:PageHeader.PrimaryCommands>
+				<AppBarButton Click="SaveButtonClick" Label="Save" Icon="Save"/>
+				<AppBarButton Click="DeleteButtonClick"  Label="Delete" Icon="Delete"/>
+			</controls:PageHeader.PrimaryCommands>
 			<!--  secondary commands  -->
 			<controls:PageHeader.SecondaryCommands>
 				<AppBarButton Click="{x:Bind Path=ViewModel.GotoSettings}" Label="Settings" />
