@@ -29,7 +29,7 @@ namespace LawFirmDBMS.Views
 			clientList = db.GetClients();
         }
 		SqlDB db = new SqlDB();
-		ObservableCollection<Client> clientList = new ObservableCollection<Client>();
+		List<Client> clientList = new List<Client>();
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);

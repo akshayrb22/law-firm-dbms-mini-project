@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Data.SQLite;
 using System.Diagnostics;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;

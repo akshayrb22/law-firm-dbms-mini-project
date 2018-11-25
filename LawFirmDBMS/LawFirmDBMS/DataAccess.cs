@@ -93,9 +93,9 @@ namespace LawFirmDBMS
 				Debug.WriteLine(e);
 			}
 		}
-		public ObservableCollection<Case> GetCases()
+		public List<Case> GetCases()
 		{
-			ObservableCollection<Case> caseList = new ObservableCollection<Case>();
+			List<Case> caseList = new List<Case>();
 			string getCases = "SELECT * FROM CASES;";
 			connection.Open();
 			MySqlCommand command = new MySqlCommand(getCases, connection);
@@ -178,9 +178,9 @@ namespace LawFirmDBMS
 				Debug.WriteLine(e);
 			}
 		}
-		public ObservableCollection<Client> GetClients()
+		public List<Client> GetClients()
 		{
-			ObservableCollection<Client> clientList = new ObservableCollection<Client>();
+			List<Client> clientList = new List<Client>();
 			string getClients = "SELECT * FROM CLIENT;";
 			connection.Open();
 			MySqlCommand command = new MySqlCommand(getClients, connection);
@@ -244,9 +244,9 @@ namespace LawFirmDBMS
 		{
 			try
 			{
-				string paralegalInsert = "INSERT INTO PARALEGAL(p_id, name, phone) VALUES(@p_id, @name, @phone);";
+				string paralegalInsert = "INSERT INTO PARALEGALS(p_id, name, phone) VALUES(@p_id, @name, @phone);";
 				MySqlCommand insert = new MySqlCommand(paralegalInsert, connection);
-				insert.Parameters.AddWithValue("@cl_id", paralegal.PID);
+				insert.Parameters.AddWithValue("@p_id", paralegal.PID);
 				insert.Parameters.AddWithValue("@name", paralegal.FullName);
 				insert.Parameters.AddWithValue("@phone", paralegal.Phone);
 				connection.Open();
@@ -259,9 +259,9 @@ namespace LawFirmDBMS
 				throw;
 			}
 		}
-		public ObservableCollection<Paralegal> GetParalegals()
+		public List<Paralegal> GetParalegals()
 		{
-			ObservableCollection<Paralegal> paralegalList = new ObservableCollection<Paralegal>();
+			List<Paralegal> paralegalList = new List<Paralegal>();
 			string getParalegals = "SELECT * FROM PARALEGALS;";
 			connection.Open();
 			MySqlCommand command = new MySqlCommand(getParalegals, connection);
@@ -325,7 +325,7 @@ namespace LawFirmDBMS
 		{
 			try
 			{
-				string caseRecordInsert = "INSERT INTO CASE_RECORDS(doc_id, case_id, p_id) VALUES(@doc_id, @case_id, @p_id);";
+				string caseRecordInsert = "INSERT INTO CASE_RECORD(doc_id, case_id, p_id) VALUES(@doc_id, @case_id, @p_id);";
 				MySqlCommand insert = new MySqlCommand(caseRecordInsert, connection);
 				insert.Parameters.AddWithValue("@doc_id", caseRecord.DocID);
 				insert.Parameters.AddWithValue("@case_id", caseRecord.CaseID);
@@ -340,9 +340,9 @@ namespace LawFirmDBMS
 				throw;
 			}
 		}
-		public ObservableCollection<CaseRecord> GetCaseRecords()
+		public List<CaseRecord> GetCaseRecords()
 		{
-			ObservableCollection<CaseRecord> recordsList = new ObservableCollection<CaseRecord>();
+			List<CaseRecord> recordsList = new List<CaseRecord>();
 			string getRecords = "SELECT * FROM CASE_RECORDS;";
 			connection.Open();
 			MySqlCommand command = new MySqlCommand(getRecords, connection);
@@ -401,10 +401,10 @@ namespace LawFirmDBMS
 			}
 		}
 
-		public ObservableCollection<MixedBag> GetDocDetails()
+		public List<MixedBag> GetDocDetails()
 		{
 			List<string> namesList = new List<string>();
-			ObservableCollection<MixedBag> mixedBagList = new ObservableCollection<MixedBag>();
+			List<MixedBag> mixedBagList = new List<MixedBag>();
 			MySqlCommand retrieveDocDetails = new MySqlCommand("DOC_DETAILS", connection)
 			{
 				CommandType = System.Data.CommandType.StoredProcedure
@@ -418,9 +418,10 @@ namespace LawFirmDBMS
 					MixedBag mixedBag = new MixedBag
 					{
 						ParalegalName = details.GetString(0),
-						DocID = details.GetInt32(1),
-						PID = details.GetInt32(2),
-						CaseID = details.GetInt32(3)
+						Phone = details.GetString(1), 
+						DocID = details.GetInt32(2),
+						PID = details.GetInt32(3),
+						CaseID = details.GetInt32(4)
 					};
 					mixedBagList.Add(mixedBag);
 				}
@@ -541,8 +542,43 @@ namespace LawFirmDBMS
 	public class MixedBag
 	{
 		public int DocID { get; set; }
+
 		public int CaseID { get; set; }
+
 		public int PID { get; set; }
+
 		public string ParalegalName { get; set; }
+
+		public string Phone { get; set; }
+
+		public Paralegal Paralegal
+		{
+			get
+			{
+				return Paralegal;
+			}
+
+			set
+			{
+				Paralegal.PID = PID;
+				Paralegal.Phone = Phone;
+				Paralegal.FullName = ParalegalName;
+			}
+		}
+
+		public CaseRecord CaseRecord
+		{
+			get
+			{
+				return CaseRecord;
+			}
+
+			set
+			{
+				CaseRecord.CaseID = CaseID;
+				CaseRecord.DocID = DocID;
+				CaseRecord.PID = PID;
+			}
+		}
 	}
 }

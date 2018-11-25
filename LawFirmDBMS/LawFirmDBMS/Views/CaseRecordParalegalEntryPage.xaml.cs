@@ -39,10 +39,11 @@ namespace LawFirmDBMS.Views
 			paralegal.PID = Convert.ToInt32(p_id.Text);
 			paralegal.FullName = name.Text;
 
-			db.InsertIntoCaseRecords(caseRecord);
 			db.InsertIntoParalegal(paralegal);
-			PassingBag passingBag = new PassingBag(caseRecord, paralegal);
-			Frame.Navigate(typeof(Views.CaseRecordParalegalDisplayPage), passingBag);
+			db.InsertIntoCaseRecords(caseRecord);
+
+			//PassingBag passingBag = new PassingBag(caseRecord, paralegal);
+			Frame.Navigate(typeof(Views.CaseRecordParalegalDisplayPage));
 		}
 	}
 }

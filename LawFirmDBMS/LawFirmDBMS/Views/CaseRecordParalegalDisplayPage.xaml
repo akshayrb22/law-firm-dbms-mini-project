@@ -34,9 +34,9 @@
 		</controls:PageHeader>
 		<Custom:DataGrid HorizontalAlignment="Right" Width="1490" 
 						 Margin="0,48,-1490,-835" x:Name="clientDataGrid"
-						 AutoGenerateColumns="False" ItemsSource="{x:Bind mixedBagList}">
+						 AutoGenerateColumns="False" ItemsSource="{x:Bind MixedBagList}">
 			<Custom:DataGrid.Columns>
-				<Custom:DataGridTextColumn
+				<Custom:DataGridTextColumn 
 					Header="Document ID"
 					Width="SizeToHeader"
 					Binding="{Binding DocID}"
@@ -56,5 +56,17 @@
 					/>
 			</Custom:DataGrid.Columns>
 		</Custom:DataGrid>
+		<!--<GridView HorizontalAlignment="Center" Height="947" 
+			  VerticalAlignment="Top" Width="1520" 
+			  Margin="0,53,0,0" ItemsSource="{x:Bind mixedBagList}">
+			<GridView.ItemTemplate>
+				<DataTemplate>
+					<TextBox/>
+
+				</DataTemplate>
+			</GridView.ItemTemplate>
+		</GridView>-->
+
+
 	</RelativePanel>
 </Page>

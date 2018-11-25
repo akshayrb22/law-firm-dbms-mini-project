@@ -33,49 +33,47 @@ namespace LawFirmDBMS.Views
 		Paralegal paralegal = new Paralegal();
 		Frame frame = Window.Current.Content as Frame;
 		SqlDB db = new SqlDB();
-		public ObservableCollection<CaseRecord> caseRecordList { get; set; }
+		public List<CaseRecord> CaseRecordList { get; set; }
+		public List<Paralegal> ParalegalList { get; set; }
+		public List<MixedBag> MixedBagList { get; set; }
 
-		public ObservableCollection<Paralegal> paralegalList { get; private set; }
-		public ObservableCollection<MixedBag> mixedBagList { get; set; }
+		public List<CaseRecord> EditedCaseRecords { get; set; }
+		public List<Paralegal> EditedParalegals { get; set; }
+		public List<MixedBag> EditedMixedBags { get; set; }
 
+		public List<MixedBag> InitialMixedBag { get; set; }
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
-			try
-			{
-				if (e.Parameter.GetType() == typeof(PassingBag))
-				{
-					PassingBag passingBag = (PassingBag)e.Parameter;
-					caseRecord = passingBag.CaseRecord;
-					paralegal = passingBag.Paralegal;
-				}
-			}
-			catch (NullReferenceException nre)
-			{
-				Debug.WriteLine(nre);
-				if (e.Parameter is null)
-				{
-					mixedBagList = db.GetDocDetails();
-
-				}
-			}
-			
-			
+			MixedBagList = db.GetDocDetails();
+			InitialMixedBag = MixedBagList;
 		}
 
 		private void SaveButtonClick(object sender, RoutedEventArgs e)
 		{
-			CaseRecord updatedCaseRecord = new CaseRecord();
-			clientDataGrid.CommitEdit();
-			//clientDataGrid.
-
+			bool edited = clientDataGrid.CommitEdit();
+			if (edited && InitialMixedBag != MixedBagList)
+			{
+				EditedMixedBags = MixedBagList.Except(InitialMixedBag).ToList();
+				foreach (var item in EditedMixedBags)
+				{
+					db.UpdateParalegals(item.Paralegal);
+					db.UpdateCaseRecord(item.CaseRecord);
+				}
+			}
+			this.Refresh();
 			
-			//db.UpdateCaseRecord(updatedCaseRecord);
 		}
+
 
 		private void DeleteButtonClick(object sender, RoutedEventArgs e)
 		{
-
+			List<MixedBag> indices = (List<MixedBag>)clientDataGrid.SelectedItems;
+			foreach (var item in indices)
+			{
+				db.DeleteFromParalegal(item.PID);
+				db.DeleteFromCaseRecord(item.DocID);
+			}
 		}
 	}
 }

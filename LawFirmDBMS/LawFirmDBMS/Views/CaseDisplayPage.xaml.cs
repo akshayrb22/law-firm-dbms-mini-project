@@ -28,7 +28,7 @@ namespace LawFirmDBMS.Views
             this.InitializeComponent();
 			caseList = db.GetCases();
         }
-		ObservableCollection<Case> caseList = new ObservableCollection<Case>();
+		List<Case> caseList = new List<Case>();
 		SqlDB db = new SqlDB();
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
