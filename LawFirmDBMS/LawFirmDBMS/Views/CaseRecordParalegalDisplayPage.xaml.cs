@@ -46,34 +46,33 @@ namespace LawFirmDBMS.Views
 		{
 			base.OnNavigatedTo(e);
 			MixedBagList = db.GetDocDetails();
-			InitialMixedBag = MixedBagList;
+			InitialMixedBag = db.GetDocDetails();
 		}
 
 		private void SaveButtonClick(object sender, RoutedEventArgs e)
 		{
-			bool edited = clientDataGrid.CommitEdit();
+			bool edited = caseRecordDataGrid.CommitEdit();
 			if (edited && InitialMixedBag != MixedBagList)
 			{
 				EditedMixedBags = MixedBagList.Except(InitialMixedBag).ToList();
 				foreach (var item in EditedMixedBags)
 				{
 					db.UpdateParalegals(item.Paralegal);
-					db.UpdateCaseRecord(item.CaseRecord);
+					//db.UpdateCaseRecord(item.CaseRecord);
 				}
 			}
-			this.Refresh();
-			
+	
 		}
 
 
 		private void DeleteButtonClick(object sender, RoutedEventArgs e)
 		{
-			List<MixedBag> indices = (List<MixedBag>)clientDataGrid.SelectedItems;
-			foreach (var item in indices)
-			{
-				db.DeleteFromParalegal(item.PID);
-				db.DeleteFromCaseRecord(item.DocID);
-			}
+			MixedBag mixedBag = (MixedBag)caseRecordDataGrid.SelectedItem;
+			Debug.WriteLine(mixedBag);
+			
+			db.DeleteFromParalegal(mixedBag.PID);
+			//db.DeleteFromCaseRecord(mixedBag.DocID);
+			
 		}
 	}
 }

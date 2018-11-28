@@ -11,8 +11,13 @@ namespace LawFirmDBMS
 {
 	public class SqlDB
     {
-		const string path = "server=127.0.0.1;user id=root;password=root;database=law_firm";
+		const string path = "server=127.0.0.1;user id=root;password=root;persistsecurityinfo=True;database=law_firm";
 		MySqlConnection connection = new MySqlConnection(path);
+
+		public SqlDB()
+		{
+			connection.Close();
+		}
 
 		public void InsertIntoLawyer(Lawyer lawyer)
         {
@@ -26,14 +31,22 @@ namespace LawFirmDBMS
 				insert.Parameters.AddWithValue("@billables", lawyer.Billables);
 				insert.Parameters.AddWithValue("@phone", lawyer.Phone);
 				insert.Parameters.AddWithValue("@password", lawyer.Password);
-
-				connection.Open();
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				insert.ExecuteNonQuery();
-				connection.Close();
 			}
-			catch(Exception e)
+			catch (Exception e)
 			{
 				Debug.WriteLine(e);
+			}
+			finally
+			{
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
 			}
 		}
 		public Lawyer GetLawyer(string password, string phoneNumber) 
@@ -42,7 +55,10 @@ namespace LawFirmDBMS
 			try
 			{
 				string getLawyerDetails = "SELECT * FROM LAWYER WHERE PHONE=@phone AND PASSWORD=@password;";
-				connection.Open();
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				MySqlCommand command = new MySqlCommand(getLawyerDetails, connection);
 				command.Parameters.AddWithValue("@phone", phoneNumber);
 				command.Parameters.AddWithValue("@password", password);
@@ -70,6 +86,13 @@ namespace LawFirmDBMS
 				Debug.WriteLine(e);
 				return lawyer;
 			}
+			finally
+			{
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
+			}
 		}
 
 		public void InsertIntoCases(Case _case)
@@ -84,20 +107,32 @@ namespace LawFirmDBMS
 				insert.Parameters.AddWithValue("@title", _case.Title);
 				insert.Parameters.AddWithValue("@courtroom_number", _case.CourtroomNumber);
 				insert.Parameters.AddWithValue("@cl_id", _case.ClientID);
-				connection.Open();
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				insert.ExecuteNonQuery();
-				connection.Close();
 			}
 			catch (Exception e)
 			{
 				Debug.WriteLine(e);
+			}
+			finally
+			{
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
 			}
 		}
 		public List<Case> GetCases()
 		{
 			List<Case> caseList = new List<Case>();
 			string getCases = "SELECT * FROM CASES;";
-			connection.Open();
+			if (connection.State == System.Data.ConnectionState.Closed)
+			{
+				connection.Open();
+			}
 			MySqlCommand command = new MySqlCommand(getCases, connection);
 			MySqlDataReader cases = command.ExecuteReader();
 			if (cases.HasRows)
@@ -117,18 +152,28 @@ namespace LawFirmDBMS
 				}
 			}
 			cases.Close();
+			if (connection.State == System.Data.ConnectionState.Open)
+			{
+				connection.Close();
+			}
 			return caseList;
 		}
 		public void DeleteFromCases(int caseID)
 		{
 			try
 			{
-				string caseDelete = "DELETE FROM CASE WHERE case_id = @case_id;";
+				string caseDelete = "DELETE FROM CASES WHERE case_id = @case_id;";
 				MySqlCommand delete = new MySqlCommand(caseDelete, connection);
 				delete.Parameters.AddWithValue("@case_id", caseID);
-				connection.Open();
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				delete.ExecuteNonQuery();
-				connection.Close();
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
 			}
 			catch (Exception e)
 			{
@@ -141,7 +186,7 @@ namespace LawFirmDBMS
 			try
 			{
 				string caseUpdate = "UPDATE CASES SET STATUS = @status, HOURS_BILLED = " +
-					"@hours_billed, CL_ID = @cl_id, COURTROOM_NUMBER = @courtroom_number WHERE" +
+					"@hours_billed, CL_ID = @cl_id, COURTROOM_NUMBER = @courtroom_number WHERE " +
 					"CASE_ID = @case_id;";
 				MySqlCommand update = new MySqlCommand(caseUpdate, connection);
 				update.Parameters.AddWithValue("@status", _case.Status);
@@ -149,9 +194,15 @@ namespace LawFirmDBMS
 				update.Parameters.AddWithValue("@cl_id", _case.ClientID);
 				update.Parameters.AddWithValue("@courtroom_number", _case.CourtroomNumber);
 				update.Parameters.AddWithValue("@case_id", _case.CaseID);
-				connection.Open();
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				update.ExecuteNonQuery();
-				connection.Close();
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
 			}
 			catch (Exception e)
 			{
@@ -169,9 +220,15 @@ namespace LawFirmDBMS
 				insert.Parameters.AddWithValue("@cl_id", client.ClientID);
 				insert.Parameters.AddWithValue("@name", client.FullName);
 				insert.Parameters.AddWithValue("@phone", client.Phone);
-				connection.Open();
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				insert.ExecuteNonQuery();
-				connection.Close();
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
 			}
 			catch (Exception e)
 			{
@@ -182,7 +239,10 @@ namespace LawFirmDBMS
 		{
 			List<Client> clientList = new List<Client>();
 			string getClients = "SELECT * FROM CLIENT;";
-			connection.Open();
+			if (connection.State == System.Data.ConnectionState.Closed)
+			{
+				connection.Open();
+			}
 			MySqlCommand command = new MySqlCommand(getClients, connection);
 			MySqlDataReader clients = command.ExecuteReader();
 			if (clients.HasRows)
@@ -196,10 +256,14 @@ namespace LawFirmDBMS
 						Phone = clients.GetString(2)
 					};
 					clientList.Add(client);
-					clients.NextResult();
+					//clients.NextResult();
 				}
 			}
 			clients.Close();
+			if (connection.State == System.Data.ConnectionState.Open)
+			{
+				connection.Close();
+			}
 			return clientList;
 
 		}
@@ -207,12 +271,18 @@ namespace LawFirmDBMS
 		{
 			try
 			{
-				string clientDelete = "DELETE FROM CASE WHERE cl_id = @cl_id;";
+				string clientDelete = "DELETE FROM CLIENT WHERE cl_id = @cl_id;";
 				MySqlCommand delete = new MySqlCommand(clientDelete, connection);
-				delete.Parameters.AddWithValue("@case_id", clientID);
-				connection.Open();
+				delete.Parameters.AddWithValue("@cl_id", clientID);
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				delete.ExecuteNonQuery();
-				connection.Close();
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
 			}
 			catch (Exception e)
 			{
@@ -229,15 +299,22 @@ namespace LawFirmDBMS
 				update.Parameters.AddWithValue("@name", client.FullName);
 				update.Parameters.AddWithValue("@phone", client.Phone);
 				update.Parameters.AddWithValue("@cl_id", client.ClientID);
-				connection.Open();
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				update.ExecuteNonQuery();
-				connection.Close();
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
 			}
 			catch (Exception e)
 			{
 				Debug.WriteLine(e);
 				throw;
 			}
+
 		}
 
 		public void InsertIntoParalegal(Paralegal paralegal)
@@ -249,9 +326,15 @@ namespace LawFirmDBMS
 				insert.Parameters.AddWithValue("@p_id", paralegal.PID);
 				insert.Parameters.AddWithValue("@name", paralegal.FullName);
 				insert.Parameters.AddWithValue("@phone", paralegal.Phone);
-				connection.Open();
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				insert.ExecuteNonQuery();
-				connection.Close();
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
 			}
 			catch (Exception e)
 			{
@@ -280,19 +363,28 @@ namespace LawFirmDBMS
 				}
 			}
 			paralegals.Close();
-			return paralegalList
-;
+			if (connection.State == System.Data.ConnectionState.Open)
+			{
+				connection.Close();
+			}
+			return paralegalList;
 		}
 		public void DeleteFromParalegal(int paralegalID)
 		{
 			try
 			{
-				string paralegalDelete = "DELETE FROM PARALEGAL WHERE p_id = @p_id;";
+				string paralegalDelete = "DELETE FROM PARALEGALS WHERE p_id = @p_id;";
 				MySqlCommand delete = new MySqlCommand(paralegalDelete, connection);
 				delete.Parameters.AddWithValue("@p_id", paralegalID);
-				connection.Open();
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				delete.ExecuteNonQuery();
-				connection.Close();
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
 			}
 			catch (Exception e)
 			{
@@ -310,9 +402,15 @@ namespace LawFirmDBMS
 				update.Parameters.AddWithValue("@name", paralegal.FullName);
 				update.Parameters.AddWithValue("@phone", paralegal.Phone);
 				update.Parameters.AddWithValue("@p_id", paralegal.PID);
-				connection.Open();
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				update.ExecuteNonQuery();
-				connection.Close();
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
 			}
 			catch (Exception e)
 			{
@@ -330,9 +428,15 @@ namespace LawFirmDBMS
 				insert.Parameters.AddWithValue("@doc_id", caseRecord.DocID);
 				insert.Parameters.AddWithValue("@case_id", caseRecord.CaseID);
 				insert.Parameters.AddWithValue("@p_id", caseRecord.PID);
-				connection.Open();
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				insert.ExecuteNonQuery();
-				connection.Close();
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
 			}
 			catch (Exception e)
 			{
@@ -344,7 +448,10 @@ namespace LawFirmDBMS
 		{
 			List<CaseRecord> recordsList = new List<CaseRecord>();
 			string getRecords = "SELECT * FROM CASE_RECORDS;";
-			connection.Open();
+			if (connection.State == System.Data.ConnectionState.Closed)
+			{
+				connection.Open();
+			}
 			MySqlCommand command = new MySqlCommand(getRecords, connection);
 			MySqlDataReader records = command.ExecuteReader();
 			if (records.HasRows)
@@ -361,18 +468,28 @@ namespace LawFirmDBMS
 				}
 			}
 			records.Close();
+			if (connection.State == System.Data.ConnectionState.Open)
+			{
+				connection.Close();
+			}
 			return recordsList;
 		}
 		public void DeleteFromCaseRecord(int docID)
 		{
 			try
 			{
-				string recordDelete = "DELETE FROM CASE_RECORDS WHERE doc_id = @doc_id;";
+				string recordDelete = "DELETE FROM CASE_RECORD WHERE doc_id = @doc_id;";
 				MySqlCommand delete = new MySqlCommand(recordDelete, connection);
 				delete.Parameters.AddWithValue("@doc_id", docID);
-				connection.Open();
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				delete.ExecuteNonQuery();
-				connection.Close();
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
 			}
 			catch (Exception e)
 			{
@@ -390,9 +507,15 @@ namespace LawFirmDBMS
 				update.Parameters.AddWithValue("@case_id", caseRecord.CaseID);
 				update.Parameters.AddWithValue("@p_id", caseRecord.PID);
 				update.Parameters.AddWithValue("@doc_id", caseRecord.DocID);
-				connection.Open();
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
 				update.ExecuteNonQuery();
-				connection.Close();
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
 			}
 			catch (Exception e)
 			{
@@ -409,7 +532,10 @@ namespace LawFirmDBMS
 			{
 				CommandType = System.Data.CommandType.StoredProcedure
 			};
-			connection.Open();
+			if (connection.State == System.Data.ConnectionState.Closed)
+			{
+				connection.Open();
+			}
 			MySqlDataReader details = retrieveDocDetails.ExecuteReader();
 			if (details.HasRows)
 			{
@@ -427,7 +553,59 @@ namespace LawFirmDBMS
 				}
 			}
 			details.Close();
+			if (connection.State == System.Data.ConnectionState.Open)
+			{
+				connection.Close();
+			}
 			return mixedBagList;
+		}
+
+		public void InsertIntoCounsels(Lawyer lawyer, Client client)
+		{
+			try
+			{
+				string counselsInsert = "INSERT INTO COUNSELS(l_id, cl_id) VALUES(@l_id, @cl_id)";
+				MySqlCommand insert = new MySqlCommand(counselsInsert, connection);
+				insert.Parameters.AddWithValue("@l_id", lawyer.LawyerID);
+				insert.Parameters.AddWithValue("@cl_id", client.ClientID);
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
+				insert.ExecuteNonQuery();
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
+			}
+			catch (Exception e)
+			{
+				Debug.WriteLine(e);
+			}
+		}
+
+		public void InsertIntoHandles(Lawyer lawyer, Case _case)
+		{
+			try
+			{
+				string handlesInsert = "INSERT INTO HANDLES(l_id, case_id) VALUES(@l_id, @case_id)";
+				MySqlCommand insert = new MySqlCommand(handlesInsert, connection);
+				insert.Parameters.AddWithValue("@l_id", lawyer.LawyerID);
+				insert.Parameters.AddWithValue("@case_id", _case.CaseID);
+				if (connection.State == System.Data.ConnectionState.Closed)
+				{
+					connection.Open();
+				}
+				insert.ExecuteNonQuery();
+				if (connection.State == System.Data.ConnectionState.Open)
+				{
+					connection.Close();
+				}
+			}
+			catch (Exception e)
+			{
+				Debug.WriteLine(e);
+			}
 		}
 	}
 

@@ -34,8 +34,9 @@
 		</controls:PageHeader>
 
 		<Custom:DataGrid HorizontalAlignment="Right" Width="1500" 
-			Margin="0,48,-1500,-914" x:Name="clientDataGrid"
-			AutoGenerateColumns="False" ItemsSource="{x:Bind Path=caseList}" VerticalAlignment="Stretch" AlternatingRowBackground="DarkGray"
+			Margin="0,48,-1500,-914" x:Name="caseDataGrid"
+			AutoGenerateColumns="False" ItemsSource="{x:Bind Path=CaseList}" 
+			VerticalAlignment="Stretch" AlternatingRowBackground="LightGray"
 			GridLinesVisibility="All" >
 			<Custom:DataGrid.Columns>
 				<Custom:DataGridTextColumn

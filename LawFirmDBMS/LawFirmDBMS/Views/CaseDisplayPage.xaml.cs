@@ -26,9 +26,12 @@ namespace LawFirmDBMS.Views
         public CaseViewUpdatePage()
         {
             this.InitializeComponent();
-			caseList = db.GetCases();
+			CaseList = db.GetCases();
+			InitialCaseList = db.GetCases();
         }
-		List<Case> caseList = new List<Case>();
+		public List<Case> CaseList { get; set; }
+		public List<Case> InitialCaseList { get; set; }
+		public List<Case> EditedCaseList { get; set; }
 		SqlDB db = new SqlDB();
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
@@ -38,11 +41,22 @@ namespace LawFirmDBMS.Views
 
 		private void SaveButtonClick(object sender, RoutedEventArgs e)
 		{
-			
+			bool edited = caseDataGrid.CommitEdit();
+			if (edited && CaseList != InitialCaseList)
+			{
+				EditedCaseList = CaseList.Except(InitialCaseList).ToList();
+				foreach (var item in EditedCaseList)
+				{
+					db.UpdateCases(item);
+				}
+			}
 		}
 		private void DeleteButtonClick(object sender, RoutedEventArgs e)
 		{
-
+			Case _case = (Case)caseDataGrid.SelectedItem;
+			db.DeleteFromCases(_case.CaseID);
+			
+			// TODO: Refresh page here.
 		}
 	}
 }

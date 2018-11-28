@@ -34,8 +34,8 @@
 
 		<Custom:DataGrid HorizontalAlignment="Right" Width="1500" 
 			Margin="0,48,-1500,-914" x:Name="clientDataGrid"
-			AutoGenerateColumns="False" ItemsSource="{x:Bind Path=clientList}" 
-			VerticalAlignment="Stretch" AlternatingRowBackground="DarkGray"
+			AutoGenerateColumns="False" ItemsSource="{x:Bind Path=ClientList}" 
+			VerticalAlignment="Stretch" AlternatingRowBackground="LightGray"
 			GridLinesVisibility="All" >
 			<Custom:DataGrid.Columns>
 				<Custom:DataGridTextColumn

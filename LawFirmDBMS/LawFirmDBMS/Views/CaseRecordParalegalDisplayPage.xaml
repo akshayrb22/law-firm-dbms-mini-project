@@ -33,7 +33,7 @@
 			</controls:PageHeader.SecondaryCommands>
 		</controls:PageHeader>
 		<Custom:DataGrid HorizontalAlignment="Right" Width="1490" 
-						 Margin="0,48,-1490,-835" x:Name="clientDataGrid"
+						 Margin="0,48,-1490,-835" x:Name="caseRecordDataGrid"
 						 AutoGenerateColumns="False" ItemsSource="{x:Bind MixedBagList}">
 			<Custom:DataGrid.Columns>
 				<Custom:DataGridTextColumn 

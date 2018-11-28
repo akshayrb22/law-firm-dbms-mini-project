@@ -40,11 +40,10 @@ namespace LawFirmDBMS.Views
 			};
 			SqlDB db = new SqlDB();
 			db.InsertIntoCases(_case);
-			PassingBag passingBag = new PassingBag(_case);
 			Frame frame = Window.Current.Content as Frame;
 			try
 			{
-				Frame.Navigate(typeof(Views.CaseViewUpdatePage), passingBag);
+				Frame.Navigate(typeof(Views.CaseViewUpdatePage));
 			}
 			catch (Exception ex)
 			{

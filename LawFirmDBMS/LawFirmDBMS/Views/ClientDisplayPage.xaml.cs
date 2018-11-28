@@ -26,22 +26,39 @@ namespace LawFirmDBMS.Views
         public ClientDisplayPage()
         {
             this.InitializeComponent();
-			clientList = db.GetClients();
+			
         }
 		SqlDB db = new SqlDB();
-		List<Client> clientList = new List<Client>();
+		public List<Client> ClientList { get; set; }
+		public List<Client> InitialClientList { get; set; }
+		public List<Client> EditedClientList { get; set; }
+	
+
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
+			InitialClientList = db.GetClients();
+			ClientList = db.GetClients();
 		}
 		private void SaveButtonClick(object sender, RoutedEventArgs e)
 		{
-			clientDataGrid.CommitEdit();
+			bool edited = clientDataGrid.CommitEdit();
+			if (edited && ClientList != InitialClientList)
+			{
+				EditedClientList = ClientList.Except(InitialClientList).ToList();
+				foreach (var item in EditedClientList)
+				{
+					db.UpdateClients(item);
+				}
+
+			}
 		}
 
 		private void DeleteButtonClick(object sender, RoutedEventArgs e)
 		{
-
+			Client client = (Client)clientDataGrid.SelectedItem;
+			db.DeleteFromClient(client.ClientID);
+			// Refresh page
 		}
 	}
 }
