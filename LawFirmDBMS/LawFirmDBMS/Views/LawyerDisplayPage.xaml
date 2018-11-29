@@ -7,13 +7,13 @@
 	xmlns:controls="using:Template10.Controls"
 	xmlns:vm="using:LawFirmDBMS.ViewModels"
 	xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    x:Class="LawFirmDBMS.Views.LawyerViewPage"
+    x:Class="LawFirmDBMS.Views.LawyerDisplayPage"
 	mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 	<Page.DataContext>
-		<vm:MainPageViewModel x:Name="ViewModel" />
+		<vm:LawyerDisplayPageViewModel x:Name="ViewModel" />
 	</Page.DataContext>
-	<RelativePanel HorizontalAlignment="Center" Height="1000" Margin="0,0,0,0" VerticalAlignment="Center" Width="1500">
+	<RelativePanel>
 		<controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True" Text="Lawyer Display Page">
@@ -27,12 +27,13 @@
 			</controls:PageHeader.SecondaryCommands>
 
 		</controls:PageHeader>
-		<TextBlock x:Name="name" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.FullName}" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160" Margin="80,0,0,-240" />
-		<TextBlock x:Name="designation" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.Designation}" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160" Margin="480,0,0,-240"/>
-		<TextBlock x:Name="billables" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.Billables}" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Margin="80,440,0,0"/>
-		<TextBlock x:Name="phone" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.Phone}" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Margin="480,440,0,0"/>
-
-
-
+		<TextBlock x:Name="name" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.FullName}" 
+				   TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160" Margin="80,0,0,-240" />
+		<TextBlock x:Name="designation" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.Designation}"
+				   TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160" Margin="480,0,0,-240"/>
+		<TextBlock x:Name="billables" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.Billables}"
+				   TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Margin="80,440,0,0"/>
+		<TextBlock x:Name="phone" HorizontalAlignment="Left" Height="40" Text="{x:Bind Lawyer.Phone}" 
+				   TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Margin="480,440,0,0"/>
 	</RelativePanel>
 </Page>

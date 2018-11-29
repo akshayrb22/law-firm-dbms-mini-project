@@ -45,5 +45,26 @@ namespace LawFirmDBMS.Views
 			//PassingBag passingBag = new PassingBag(caseRecord, paralegal);
 			Frame.Navigate(typeof(Views.CaseRecordParalegalDisplayPage));
 		}
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+			if (LoggedInLawyer.LoggedIn == false)
+			{
+				DisplayNotLoggedInDialog();
+				ViewModel.GotoMainPage();
+			}
+		}
+		private async void DisplayNotLoggedInDialog()
+		{
+			ContentDialog notLoggedIn = new ContentDialog
+			{
+				Title = "Not Logged In",
+				Content = "Please log in to continue",
+				CloseButtonText = "Ok"
+			};
+
+			ContentDialogResult result = await notLoggedIn.ShowAsync();
+			ViewModel.GotoMainPage();
+		}
 	}
 }

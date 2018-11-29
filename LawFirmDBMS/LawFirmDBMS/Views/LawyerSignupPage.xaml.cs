@@ -34,8 +34,6 @@ namespace LawFirmDBMS.Views
 		//TODO: Add upload profile picture.
 		Lawyer lawyer = new Lawyer();
 		SqlDB db = new SqlDB();
-		Frame frame = Window.Current.Content as Frame;
-
 
 		private void SubmitButtonClick(object sender, RoutedEventArgs e)
 		{
@@ -44,10 +42,11 @@ namespace LawFirmDBMS.Views
 			lawyer.Phone = phoneNumber.Text;
 			lawyer.Designation = designation.SelectedItem.ToString();
 			db.InsertIntoLawyer(lawyer);
-			PassingBag passingBag = new PassingBag(lawyer, db);
+			LoggedInLawyer.Lawyer = lawyer;
+			LoggedInLawyer.LoggedIn = true;
 			try
 			{
-				Frame.Navigate(typeof(Views.MainPage), passingBag);
+				Frame.Navigate(typeof(Views.LawyerDisplayPage));
 				
 			}
 			catch (Exception ex)

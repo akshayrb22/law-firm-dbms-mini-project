@@ -36,7 +36,13 @@ namespace LawFirmDBMS.Views
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
-			
+			if (LoggedInLawyer.LoggedIn == false)
+			{
+				CaseList = null;
+				DisplayNotLoggedInDialog();
+				Frame.Navigate(typeof(Views.MainPage));
+			}
+
 		}
 
 		private void SaveButtonClick(object sender, RoutedEventArgs e)
@@ -57,6 +63,19 @@ namespace LawFirmDBMS.Views
 			db.DeleteFromCases(_case.CaseID);
 			
 			// TODO: Refresh page here.
+		}
+
+		private async void DisplayNotLoggedInDialog()
+		{
+			ContentDialog notLoggedIn = new ContentDialog
+			{
+				Title = "Not Logged In",
+				Content = "Please log in to continue",
+				CloseButtonText = "Ok"
+			};
+
+			ContentDialogResult result = await notLoggedIn.ShowAsync();
+			ViewModel.GotoMainPage();
 		}
 	}
 }

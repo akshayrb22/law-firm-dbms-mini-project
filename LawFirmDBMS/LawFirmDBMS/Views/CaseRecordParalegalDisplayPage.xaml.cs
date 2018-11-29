@@ -27,7 +27,8 @@ namespace LawFirmDBMS.Views
 		public CaseRecordParalegalDisplayPage()
 		{
 			this.InitializeComponent();
-
+			MixedBagList = db.GetDocDetails();
+			InitialMixedBag = db.GetDocDetails();
 		}
 		CaseRecord caseRecord = new CaseRecord();
 		Paralegal paralegal = new Paralegal();
@@ -45,8 +46,26 @@ namespace LawFirmDBMS.Views
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
-			MixedBagList = db.GetDocDetails();
-			InitialMixedBag = db.GetDocDetails();
+			if (LoggedInLawyer.LoggedIn == false)
+			{
+				MixedBagList = null;
+				InitialMixedBag = null;
+				DisplayNotLoggedInDialog();
+				Frame.Navigate(typeof(Views.MainPage));
+			}
+			
+		}
+		private async void DisplayNotLoggedInDialog()
+		{
+			ContentDialog notLoggedIn = new ContentDialog
+			{
+				Title = "Not Logged In",
+				Content = "Please log in to continue",
+				CloseButtonText = "Ok"
+			};
+
+			ContentDialogResult result = await notLoggedIn.ShowAsync();
+			ViewModel.GotoMainPage();
 		}
 
 		private void SaveButtonClick(object sender, RoutedEventArgs e)

@@ -94,7 +94,7 @@
 
         <Controls:HamburgerMenu.SecondaryButtons>
             <!--  profile button  -->
-			<Controls:HamburgerButtonInfo ButtonType="Command" PageType="views:LawyerViewPage">
+			<Controls:HamburgerButtonInfo ButtonType="Command" PageType="views:LawyerDisplayPage">
 				<StackPanel Orientation="Horizontal">
   
                     <SymbolIcon Width="48"

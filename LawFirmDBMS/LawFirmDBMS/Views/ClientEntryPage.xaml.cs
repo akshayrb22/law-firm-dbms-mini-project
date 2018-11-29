@@ -40,11 +40,24 @@ namespace LawFirmDBMS.Views
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
-			passingBag = (PassingBag)e.Parameter;
-			//if (e.Parameter.GetType() == typeof(Lawyer))
-			//{
-			//	passingBag = new PassingBag(lawyer);
-			//}
+			if (LoggedInLawyer.LoggedIn == false)
+			{
+				DisplayNotLoggedInDialog();
+				Frame.Navigate(typeof(Views.MainPage));
+			}
+			
+		}
+		private async void DisplayNotLoggedInDialog()
+		{
+			ContentDialog notLoggedIn = new ContentDialog
+			{
+				Title = "Not Logged In",
+				Content = "Please log in to continue",
+				CloseButtonText = "Ok"
+			};
+
+			ContentDialogResult result = await notLoggedIn.ShowAsync();
+			Frame.Navigate(typeof(Views.MainPage));
 		}
 		// TODO: Add check for phone number validation
 		// TODO: Add an upload picture bitton to take in a picture of the client 

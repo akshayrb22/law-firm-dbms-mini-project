@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -21,13 +22,13 @@ namespace LawFirmDBMS.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class LawyerViewPage : Page
+    public sealed partial class LawyerDisplayPage : Page
     {
 		public Lawyer Lawyer { get; set; }
 		//Lawyer lawyer = new Lawyer();
 		//SqlDB db = new SqlDB();
 		public SqlDB Db { get; set; }
-		public LawyerViewPage()
+		public LawyerDisplayPage()
         {
             this.InitializeComponent();
 			Debug.WriteLine("Reached Lawyer Display page.");
@@ -35,26 +36,29 @@ namespace LawFirmDBMS.Views
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
-			// Unless we get a PassingBag object with a Lawyer and loggedIn variable, don't allow to enter.
-			try
+			if (LoggedInLawyer.LoggedIn)
 			{
-				PassingBag passingBag = (PassingBag)e.Parameter;
-				if (passingBag.LoggedIn)
-				{
-					Lawyer = passingBag.Lawyer;
-				}
+				Lawyer = LoggedInLawyer.Lawyer;
+				MessageDialog message = new MessageDialog("Welcome" + Lawyer.FullName);
 			}
-			catch (NullReferenceException nre)
+			else
 			{
-
-				Debug.WriteLine(nre);
-				throw;
+				DisplayNotLoggedInDialog();
+				Frame.Navigate(typeof(Views.MainPage));
 			}
-			catch (Exception ex)			
-			{
-				Debug.WriteLine(ex);
-			}
-			//lawyer = db.GetLawyer(passingBag.lawyer.Password, passingBag.lawyer.Phone);
+			
 		}
-    }
+		private async void DisplayNotLoggedInDialog()
+		{
+			ContentDialog notLoggedIn = new ContentDialog
+			{
+				Title = "Not Logged In",
+				Content = "Please log in to continue",
+				CloseButtonText = "Ok"
+			};
+
+			ContentDialogResult result = await notLoggedIn.ShowAsync();
+			Frame.Navigate(typeof(Views.MainPage));
+		}
+	}
 }

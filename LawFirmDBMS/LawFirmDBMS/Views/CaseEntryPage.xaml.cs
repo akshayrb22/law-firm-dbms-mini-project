@@ -40,7 +40,6 @@ namespace LawFirmDBMS.Views
 			};
 			SqlDB db = new SqlDB();
 			db.InsertIntoCases(_case);
-			Frame frame = Window.Current.Content as Frame;
 			try
 			{
 				Frame.Navigate(typeof(Views.CaseViewUpdatePage));
@@ -55,6 +54,23 @@ namespace LawFirmDBMS.Views
 		{
 			base.OnNavigatedTo(e);
 			Debug.WriteLine("Entered Case Entry Page.");
+			if (LoggedInLawyer.LoggedIn == false)
+			{
+				DisplayNotLoggedInDialog();
+				Frame.Navigate(typeof(Views.MainPage));
+			}
+		}
+		private async void DisplayNotLoggedInDialog()
+		{
+			ContentDialog notLoggedIn = new ContentDialog
+			{
+				Title = "Not Logged In",
+				Content = "Please log in to continue",
+				CloseButtonText = "Ok"
+			};
+
+			ContentDialogResult result = await notLoggedIn.ShowAsync();
+			Frame.Navigate(typeof(Views.MainPage));
 		}
 	}
 }

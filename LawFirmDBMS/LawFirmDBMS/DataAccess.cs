@@ -669,7 +669,6 @@ namespace LawFirmDBMS
 
 	public class PassingBag
 	{
-		public bool LoggedIn { get; set; }
 
 		public CaseRecord CaseRecord { get; set; }
 
@@ -708,12 +707,6 @@ namespace LawFirmDBMS
 		public PassingBag(Lawyer lawyer)
 		{
 			Lawyer = lawyer;
-		}
-
-		public PassingBag(Lawyer lawyer, bool loggedIn)
-		{
-			this.Lawyer = lawyer;
-			this.LoggedIn = loggedIn;
 		}
 	}
 
@@ -758,5 +751,12 @@ namespace LawFirmDBMS
 				CaseRecord.PID = PID;
 			}
 		}
+	}
+
+	public static class LoggedInLawyer
+	{
+		public static Lawyer Lawyer { get; set; }
+
+		public static bool LoggedIn { get; set; }
 	}
 }

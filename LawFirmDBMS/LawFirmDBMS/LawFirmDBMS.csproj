@@ -135,11 +135,11 @@
     <Compile Include="Views\DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LawyerSignupPage.xaml.cs">
-      <DependentUpon>LawyerSignupPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\LawyerDisplayPage.xaml.cs">
       <DependentUpon>LawyerDisplayPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LawyerSignupPage.xaml.cs">
+      <DependentUpon>LawyerSignupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -226,11 +226,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LawyerSignupPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\LawyerDisplayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LawyerSignupPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

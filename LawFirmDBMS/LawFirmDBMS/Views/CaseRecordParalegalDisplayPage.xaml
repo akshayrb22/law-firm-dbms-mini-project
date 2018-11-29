@@ -34,7 +34,8 @@
 		</controls:PageHeader>
 		<Custom:DataGrid HorizontalAlignment="Right" Width="1490" 
 						 Margin="0,48,-1490,-835" x:Name="caseRecordDataGrid"
-						 AutoGenerateColumns="False" ItemsSource="{x:Bind MixedBagList}">
+						 AutoGenerateColumns="False" ItemsSource="{x:Bind MixedBagList}"
+						 AlternatingRowBackground="LightGray">
 			<Custom:DataGrid.Columns>
 				<Custom:DataGridTextColumn 
 					Header="Document ID"

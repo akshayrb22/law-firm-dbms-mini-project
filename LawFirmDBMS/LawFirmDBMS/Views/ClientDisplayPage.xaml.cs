@@ -26,8 +26,9 @@ namespace LawFirmDBMS.Views
         public ClientDisplayPage()
         {
             this.InitializeComponent();
-			
-        }
+			InitialClientList = db.GetClients();
+			ClientList = db.GetClients();
+		}
 		SqlDB db = new SqlDB();
 		public List<Client> ClientList { get; set; }
 		public List<Client> InitialClientList { get; set; }
@@ -37,9 +38,28 @@ namespace LawFirmDBMS.Views
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
-			InitialClientList = db.GetClients();
-			ClientList = db.GetClients();
+			InitialClientList = null;
+			ClientList = null;
+			if (LoggedInLawyer.LoggedIn == false)
+			{
+				DisplayNotLoggedInDialog();
+				Frame.Navigate(typeof(Views.MainPage));
+			}
 		}
+
+		private async void DisplayNotLoggedInDialog()
+		{
+			ContentDialog notLoggedIn = new ContentDialog
+			{
+				Title = "Not Logged In",
+				Content = "Please log in to continue",
+				CloseButtonText = "Ok"
+			};
+
+			ContentDialogResult result = await notLoggedIn.ShowAsync();
+			ViewModel.GotoMainPage();
+		}
+
 		private void SaveButtonClick(object sender, RoutedEventArgs e)
 		{
 			bool edited = clientDataGrid.CommitEdit();

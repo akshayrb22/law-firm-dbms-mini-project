@@ -54,9 +54,9 @@ namespace LawFirmDBMS.Views
 				}
 				else
 				{
-					loggedIn = true;
-					PassingBag passingBag = new PassingBag(lawyer, loggedIn);
-					Frame.Navigate(typeof(Views.LawyerViewPage), passingBag);
+					LoggedInLawyer.LoggedIn = true;
+					LoggedInLawyer.Lawyer = lawyer;
+					Frame.Navigate(typeof(Views.LawyerDisplayPage));
 				}
 			}
 			catch (MySqlException ex)
