@@ -128,12 +128,13 @@ namespace LawFirmDBMS
 		public List<Case> GetCases()
 		{
 			List<Case> caseList = new List<Case>();
-			string getCases = "SELECT * FROM CASES;";
+			string getCases = "SELECT C.* FROM CASES AS C, HANDLES AS H WHERE H.l_id = @l_id AND H.case_id = C.case_id;";
 			if (connection.State == System.Data.ConnectionState.Closed)
 			{
 				connection.Open();
 			}
 			MySqlCommand command = new MySqlCommand(getCases, connection);
+			command.Parameters.AddWithValue("@l_id", LoggedInLawyer.Lawyer.LawyerID);
 			MySqlDataReader cases = command.ExecuteReader();
 			if (cases.HasRows)
 			{
@@ -157,6 +158,30 @@ namespace LawFirmDBMS
 				connection.Close();
 			}
 			return caseList;
+		}
+		public Case GetCase(Case _case)
+		{
+			string getCase = "SELECT * FROM CASES WHERE title = @title;";
+			if (connection.State == System.Data.ConnectionState.Closed)
+			{
+				connection.Open();
+			}
+			MySqlCommand command = new MySqlCommand(getCase, connection);
+			command.Parameters.AddWithValue("@title", _case.Title);
+			MySqlDataReader reader = command.ExecuteReader();
+			if (reader.HasRows)
+			{
+				while (reader.Read())
+				{
+					_case.CaseID = reader.GetInt32(0);
+				}
+			}
+			reader.Close();
+			if (connection.State == System.Data.ConnectionState.Open)
+			{
+				connection.Close();
+			}
+			return _case;
 		}
 		public void DeleteFromCases(int caseID)
 		{
@@ -238,12 +263,13 @@ namespace LawFirmDBMS
 		public List<Client> GetClients()
 		{
 			List<Client> clientList = new List<Client>();
-			string getClients = "SELECT * FROM CLIENT;";
+			string getClients = "SELECT CL.* FROM CLIENT AS CL, COUNSELS AS CO WHERE CO.l_id = @l_id AND CO.cl_id = CL.cl_id ;";
 			if (connection.State == System.Data.ConnectionState.Closed)
 			{
 				connection.Open();
 			}
 			MySqlCommand command = new MySqlCommand(getClients, connection);
+			command.Parameters.AddWithValue("@l_id", LoggedInLawyer.Lawyer.LawyerID);
 			MySqlDataReader clients = command.ExecuteReader();
 			if (clients.HasRows)
 			{
@@ -256,7 +282,6 @@ namespace LawFirmDBMS
 						Phone = clients.GetString(2)
 					};
 					clientList.Add(client);
-					//clients.NextResult();
 				}
 			}
 			clients.Close();
@@ -266,6 +291,32 @@ namespace LawFirmDBMS
 			}
 			return clientList;
 
+		}
+		public Client GetClient(Client client)
+		{
+			string getClient = "SELECT * FROM CLIENT WHERE name = @name AND phone = @phone;";
+			if (connection.State == System.Data.ConnectionState.Closed)
+			{
+				connection.Open();
+			}
+			MySqlCommand command = new MySqlCommand(getClient, connection);
+			command.Parameters.AddWithValue("@name", client.FullName);
+			command.Parameters.AddWithValue("@phone", client.Phone);
+			MySqlDataReader reader = command.ExecuteReader();
+			if (reader.HasRows)
+			{
+				while (reader.Read())
+				{
+					client.ClientID = reader.GetInt32(0);
+				}
+				
+			}
+			reader.Close();
+			if (connection.State == System.Data.ConnectionState.Open)
+			{
+				connection.Close();
+			}
+			return client;
 		}
 		public void DeleteFromClient(int clientID)
 		{
@@ -560,13 +611,13 @@ namespace LawFirmDBMS
 			return mixedBagList;
 		}
 
-		public void InsertIntoCounsels(Lawyer lawyer, Client client)
+		public void InsertIntoCounsels(Client client)
 		{
 			try
 			{
 				string counselsInsert = "INSERT INTO COUNSELS(l_id, cl_id) VALUES(@l_id, @cl_id)";
 				MySqlCommand insert = new MySqlCommand(counselsInsert, connection);
-				insert.Parameters.AddWithValue("@l_id", lawyer.LawyerID);
+				insert.Parameters.AddWithValue("@l_id", LoggedInLawyer.Lawyer.LawyerID);
 				insert.Parameters.AddWithValue("@cl_id", client.ClientID);
 				if (connection.State == System.Data.ConnectionState.Closed)
 				{
@@ -584,13 +635,13 @@ namespace LawFirmDBMS
 			}
 		}
 
-		public void InsertIntoHandles(Lawyer lawyer, Case _case)
+		public void InsertIntoHandles(Case _case)
 		{
 			try
 			{
 				string handlesInsert = "INSERT INTO HANDLES(l_id, case_id) VALUES(@l_id, @case_id)";
 				MySqlCommand insert = new MySqlCommand(handlesInsert, connection);
-				insert.Parameters.AddWithValue("@l_id", lawyer.LawyerID);
+				insert.Parameters.AddWithValue("@l_id", LoggedInLawyer.Lawyer.LawyerID);
 				insert.Parameters.AddWithValue("@case_id", _case.CaseID);
 				if (connection.State == System.Data.ConnectionState.Closed)
 				{

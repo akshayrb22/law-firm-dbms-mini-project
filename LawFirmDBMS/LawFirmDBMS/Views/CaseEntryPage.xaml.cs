@@ -27,7 +27,7 @@ namespace LawFirmDBMS.Views
 		{
 			this.InitializeComponent();
 		}
-
+		SqlDB db = new SqlDB();
 		private void ButtonClick(object sender, RoutedEventArgs e)
 		{
 			Case _case = new Case
@@ -38,8 +38,10 @@ namespace LawFirmDBMS.Views
 				ClientID = Convert.ToInt32(client_id.Text), 
 				CourtroomNumber = courtroomNumber.Text				
 			};
-			SqlDB db = new SqlDB();
+			
 			db.InsertIntoCases(_case);
+			_case = db.GetCase(_case);
+			db.InsertIntoHandles(_case);
 			try
 			{
 				Frame.Navigate(typeof(Views.CaseViewUpdatePage));

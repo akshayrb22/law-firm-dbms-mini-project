@@ -29,13 +29,14 @@ namespace LawFirmDBMS.Views
 		Client client = new Client();
 		SqlDB db = new SqlDB();
 		Lawyer lawyer = new Lawyer();
-		PassingBag passingBag;
 		private void SubmitClick(object sender, RoutedEventArgs e)
 		{
 			client.FullName = clientName.Text;
 			client.Phone = clientPhone.Text;
 			db.InsertIntoClient(client);
-			Frame.Navigate(typeof(ClientDisplayPage), passingBag);
+			client = db.GetClient(client);
+			db.InsertIntoCounsels(client);
+			Frame.Navigate(typeof(ClientDisplayPage));
 		}
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{

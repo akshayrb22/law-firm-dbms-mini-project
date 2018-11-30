@@ -38,10 +38,11 @@ namespace LawFirmDBMS.Views
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
-			InitialClientList = null;
-			ClientList = null;
+			
 			if (LoggedInLawyer.LoggedIn == false)
 			{
+				InitialClientList = null;
+				ClientList = null;
 				DisplayNotLoggedInDialog();
 				Frame.Navigate(typeof(Views.MainPage));
 			}

@@ -16,7 +16,7 @@
 	<RelativePanel>
 		<controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
 			RelativePanel.AlignRightWithPanel="True"
-			RelativePanel.AlignTopWithPanel="True" Text="Case Display Page" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Center">
+			RelativePanel.AlignTopWithPanel="True" Text="Client Display Page" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Center">
 
 			<controls:PageHeader.PrimaryCommands>
 				<AppBarButton Click="SaveButtonClick" Label="Save" Icon="Save"/>
