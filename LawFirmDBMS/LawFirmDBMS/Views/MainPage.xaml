@@ -64,6 +64,11 @@
 		</controls:PageHeader>
 		<Button x:Name="logInButton" Content="Log In" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="160" Margin="325,400,0,0" Click="LogInButtonClick"/>
 		<Button x:Name="signUpButton" Content="Sign Up" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="160" Margin="645,400,0,0" Click="SignUpButtonClick"/>
+		
+		<Image x:Name="image1" HorizontalAlignment="Left" 
+			   Height="190" VerticalAlignment="Top" 
+			   Width="158" Margin="482,130,0,0" 
+			   Source="G:\LawFirmDBMS\LawFirmDBMS\LawFirmDBMS\Assets\law-firm-logo.jpg"/>
 
 	</RelativePanel>
 </Page>

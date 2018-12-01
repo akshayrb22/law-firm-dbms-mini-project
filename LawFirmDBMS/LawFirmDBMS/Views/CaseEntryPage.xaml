@@ -27,17 +27,17 @@
 			</controls:PageHeader.SecondaryCommands>
 		</controls:PageHeader>
 		<TextBox x:Name="title" HorizontalAlignment="Left" 
-				 Text="" Width="321" Margin="80,175,0,-226" Header="Title" VerticalAlignment="Stretch"/>
+				 Text="" Width="321" Margin="85,110,0,-161" Header="Title"/>
 		<TextBox x:Name="courtroomNumber" Header="Courtroom Number" 
-				 Margin="80,0,0,-390" HorizontalAlignment="Left" 
+				 Margin="85,0,0,-325" HorizontalAlignment="Left" 
 				 Width="241" VerticalAlignment="Bottom" Height="60"/>
 		<Button x:Name="button" Content="Submit" 
 				HorizontalAlignment="Left" VerticalAlignment="Bottom" 
-				Margin="80,0,0,-640" Height="32" 
+				Margin="85,0,0,-575" Height="32" 
 				Width="100" Click="ButtonClick"/>
 		<TextBox x:Name="client_id" HorizontalAlignment="Left" 
 				 Height="60" Text="" VerticalAlignment="Top" 
-				 Width="241" Margin="80,500,0,0"
+				 Width="241" Margin="85,435,0,0"
 				 Header="Client ID"
 				 />
 	</RelativePanel>
