@@ -28,9 +28,10 @@ namespace LawFirmDBMS.Views
 			this.InitializeComponent();
 		}
 		SqlDB db = new SqlDB();
+		Case _case;
 		private void ButtonClick(object sender, RoutedEventArgs e)
 		{
-			Case _case = new Case
+			_case = new Case
 			{
 				Title = title.Text,
 				Status = "Created",
@@ -44,7 +45,7 @@ namespace LawFirmDBMS.Views
 			db.InsertIntoHandles(_case);
 			try
 			{
-				Frame.Navigate(typeof(Views.CaseViewUpdatePage));
+				Frame.Navigate(typeof(CaseViewUpdatePage));
 			}
 			catch (Exception ex)
 			{
@@ -59,7 +60,7 @@ namespace LawFirmDBMS.Views
 			if (LoggedInLawyer.LoggedIn == false)
 			{
 				DisplayNotLoggedInDialog();
-				Frame.Navigate(typeof(Views.MainPage));
+				Frame.Navigate(typeof(MainPage));
 			}
 		}
 		private async void DisplayNotLoggedInDialog()
@@ -74,5 +75,6 @@ namespace LawFirmDBMS.Views
 			ContentDialogResult result = await notLoggedIn.ShowAsync();
 			Frame.Navigate(typeof(Views.MainPage));
 		}
+		
 	}
 }

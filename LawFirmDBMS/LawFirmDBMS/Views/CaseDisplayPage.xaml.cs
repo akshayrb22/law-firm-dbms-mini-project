@@ -26,12 +26,12 @@ namespace LawFirmDBMS.Views
         public CaseViewUpdatePage()
         {
             this.InitializeComponent();
-			CaseList = db.GetCases();
-			InitialCaseList = db.GetCases();
+			
         }
 		public List<Case> CaseList { get; set; }
 		public List<Case> InitialCaseList { get; set; }
 		public List<Case> EditedCaseList { get; set; }
+		Case _case;
 		SqlDB db = new SqlDB();
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
@@ -42,6 +42,12 @@ namespace LawFirmDBMS.Views
 				DisplayNotLoggedInDialog();
 				Frame.Navigate(typeof(Views.MainPage));
 			}
+			else
+			{
+				CaseList = db.GetCases();
+				InitialCaseList = db.GetCases();
+			}
+			
 
 		}
 
@@ -56,13 +62,28 @@ namespace LawFirmDBMS.Views
 					db.UpdateCases(item);
 				}
 			}
+			DisplayInsertedDialog();
+			Frame.Navigate(typeof(CaseViewUpdatePage));
 		}
 		private void DeleteButtonClick(object sender, RoutedEventArgs e)
 		{
-			Case _case = (Case)caseDataGrid.SelectedItem;
+			_case = (Case)caseDataGrid.SelectedItem;
 			db.DeleteFromCases(_case.CaseID);
+			DisplayDeletedDialog();
+			Frame.Navigate(typeof(CaseViewUpdatePage));
+		
+		}
+
+		private async void DisplayDeletedDialog()
+		{
+			ContentDialog notLoggedIn = new ContentDialog
+			{
+				Title = "Case deleted",
+				CloseButtonText = "Ok"
+			};
+
+			ContentDialogResult result = await notLoggedIn.ShowAsync();
 			
-			// TODO: Refresh page here.
 		}
 
 		private async void DisplayNotLoggedInDialog()
@@ -75,7 +96,19 @@ namespace LawFirmDBMS.Views
 			};
 
 			ContentDialogResult result = await notLoggedIn.ShowAsync();
-			ViewModel.GotoMainPage();
+			Frame.Navigate(typeof(MainPage));
+			
+		}
+
+		private async void DisplayInsertedDialog()
+		{
+			ContentDialog caseInserted = new ContentDialog
+			{
+				Title = "Case Updated",
+				CloseButtonText = "Ok"
+			};
+			ContentDialogResult result = await caseInserted.ShowAsync();
+			
 		}
 	}
 }

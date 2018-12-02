@@ -27,12 +27,10 @@ namespace LawFirmDBMS.Views
 		public CaseRecordParalegalDisplayPage()
 		{
 			this.InitializeComponent();
-			MixedBagList = db.GetDocDetails();
-			InitialMixedBag = db.GetDocDetails();
+			
 		}
 		CaseRecord caseRecord = new CaseRecord();
 		Paralegal paralegal = new Paralegal();
-		Frame frame = Window.Current.Content as Frame;
 		SqlDB db = new SqlDB();
 		public List<CaseRecord> CaseRecordList { get; set; }
 		public List<Paralegal> ParalegalList { get; set; }
@@ -52,6 +50,11 @@ namespace LawFirmDBMS.Views
 				InitialMixedBag = null;
 				DisplayNotLoggedInDialog();
 				Frame.Navigate(typeof(Views.MainPage));
+			}
+			else
+			{
+				MixedBagList = db.GetDocDetails();
+				InitialMixedBag = db.GetDocDetails();
 			}
 			
 		}
@@ -77,21 +80,44 @@ namespace LawFirmDBMS.Views
 				foreach (var item in EditedMixedBags)
 				{
 					db.UpdateParalegals(item.Paralegal);
-					//db.UpdateCaseRecord(item.CaseRecord);
+					db.UpdateCaseRecord(item.CaseRecord);
 				}
 			}
-	
+			DisplayCaseRecordUpdated();
+			Frame.Navigate(typeof(CaseRecordParalegalDisplayPage));
 		}
 
+		private async void DisplayCaseRecordUpdated()
+		{
+			ContentDialog caseRecordUpdated = new ContentDialog
+			{
+				Title = "Case Record Updated", 
+				CloseButtonText = "Ok"
+			};
+			ContentDialogResult result = await caseRecordUpdated.ShowAsync();
+			Frame.Navigate(typeof(CaseRecordParalegalDisplayPage));
+		}
 
 		private void DeleteButtonClick(object sender, RoutedEventArgs e)
 		{
 			MixedBag mixedBag = (MixedBag)caseRecordDataGrid.SelectedItem;
 			Debug.WriteLine(mixedBag);
 			
-			db.DeleteFromParalegal(mixedBag.PID);
-			//db.DeleteFromCaseRecord(mixedBag.DocID);
-			
+			//db.DeleteFromParalegal(mixedBag.PID);
+			db.DeleteFromCaseRecord(mixedBag.DocID);
+			DisplayCaseRecordDeleted();
+			Frame.Navigate(typeof(CaseRecordParalegalDisplayPage));
+		}
+
+		private async void DisplayCaseRecordDeleted()
+		{
+			ContentDialog caseRecordUpdated = new ContentDialog
+			{
+				Title = "Case Record Updated",
+				CloseButtonText = "Ok"
+			};
+			ContentDialogResult result = await caseRecordUpdated.ShowAsync();
+			Frame.Navigate(typeof(CaseRecordParalegalDisplayPage));
 		}
 	}
 }

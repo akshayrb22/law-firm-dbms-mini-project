@@ -792,7 +792,12 @@ namespace LawFirmDBMS
 		{
 			get
 			{
-				return CaseRecord;
+				return new CaseRecord
+				{
+					CaseID = this.CaseID,
+					DocID = this.DocID,
+					PID = this.PID
+				};
 			}
 
 			set
