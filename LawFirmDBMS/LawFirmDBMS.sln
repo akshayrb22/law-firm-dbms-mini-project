@@ -5,6 +5,17 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LawFirmDBMS", "LawFirmDBMS\LawFirmDBMS.csproj", "{FCB9CD2A-CF93-4375-9B06-D939896C03B0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C3168F8F-F03D-48CA-9345-9469C33786D2}"
+	ProjectSection(SolutionItems) = preProject
+		LawFirmDBMS\db\law_firm_case_record.sql = LawFirmDBMS\db\law_firm_case_record.sql
+		LawFirmDBMS\db\law_firm_cases.sql = LawFirmDBMS\db\law_firm_cases.sql
+		LawFirmDBMS\db\law_firm_client.sql = LawFirmDBMS\db\law_firm_client.sql
+		LawFirmDBMS\db\law_firm_counsels.sql = LawFirmDBMS\db\law_firm_counsels.sql
+		LawFirmDBMS\db\law_firm_handles.sql = LawFirmDBMS\db\law_firm_handles.sql
+		LawFirmDBMS\db\law_firm_lawyer.sql = LawFirmDBMS\db\law_firm_lawyer.sql
+		LawFirmDBMS\db\law_firm_paralegals.sql = LawFirmDBMS\db\law_firm_paralegals.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
